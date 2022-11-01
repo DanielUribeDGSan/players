@@ -49,7 +49,9 @@
                 if (pArr[0] == paramName)
                     return pArr[1];
             }
-        }        
+        }
+
+
     </script>
 
 </head>
@@ -695,7 +697,7 @@
                                         class="view__UsernameWrapper-sc-1tziidi-8 cvVZfM mt-3">
                                         <p>
                                             <span class="titleUser">Bienvenido:</span>
-                                            <span class="nameUser">NameUser</span>
+                                            <span class="nameUser" id="nameUserId"></span>
                                         </p>
                                     </div>
                                 </div>
@@ -1038,6 +1040,8 @@
 
 
     <script>
+        const user = document.querySelector('#nameUserId');
+        user.innerHTML = getParamValue('user');
 
         const miStorageGlobal = window.localStorage;
         // miStorageGlobal.removeItem('usuario_silanes');
