@@ -1,0 +1,47 @@
+.rotate-indicator {
+    display: none;
+}
+
+.cl-primary-gris {
+    color: #414141;
+    padding: 5px;
+}
+
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+    .rotate-indicator {
+        display: block;
+        position: absolute;
+        height: 95%;
+        width: 95%;
+        text-align: center;
+        padding-top: 50px;
+        background: #ffffff;
+        border-radius: 3px;
+        box-shadow: 1px 1px 3px 1px rgb(0 0 0 / 50%);
+        z-index: 60;
+        margin: 10px;
+        overflow: auto;
+    }
+
+    .rotate-indicator img {
+        width: 34%;
+    }
+}
+
+@media screen and (orientation: portrait) and (max-width: 768px) {
+    .rotate-indicator {
+        display: none !important;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 750px) {
+    .rotate-indicator img {
+        width: 19%;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 500px) {
+    .rotate-indicator {
+        display: none !important;
+    }
+}

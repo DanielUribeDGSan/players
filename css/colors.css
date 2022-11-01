@@ -1,0 +1,24 @@
+:root {
+	--gris: #fafafa;
+	--primary: #eaa630;
+	--overlay: #000;
+	--opacity: 1;
+	--fondoImage: url('https://static.vecteezy.com/system/resources/previews/001/849/553/original/modern-gold-background-free-vector.jpg');
+	--fondoChat: url('https://www.unsell.design/wp-content/uploads/2020/05/f6f57aa2-abstract-yellow-background-768x768.jpg');
+	--text-color: #000;
+	--fondo: #fff;
+	--grisNav: #a2a2a2;
+	--blanco: #fff;
+	--borderBoton: #fff;
+	--colorBoton: #fff;
+	--titleUser: #fff;
+	--nameUser: #fff;
+	--bienvenida: #fff;
+	--scrollColor: #fff;
+	--scroll2Color: #fff;
+	--userChatAdmin: #c0e659;
+	--userColorChatAdmin: #fff;
+	--fondoChatAdmin: #c0e659;
+	--userChat: #c0e659;
+	--userColorChat: #fff;
+}
