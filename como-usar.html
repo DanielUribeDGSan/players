@@ -45,8 +45,13 @@
     <script src="https://code.jquery.com/jquery-3.6.1.slim.js"
         integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
     <script>
+        const user = '{{ $user->nombre }}';
+        const email = '{{ $user->email }}';
+
         const showIframe = () => {
-            $('#myIframe').attr('src', "https://danieluribedgsan.github.io/players/index.html?user=daniel&email=daniel.uribe.garcia07@gmail.com");
+            $('#myIframe').attr('src',
+                `https://danieluribedgsan.github.io/players/index.html?user=${user}&email=${email}`
+            );
         }
 
         showIframe();
