@@ -1131,12 +1131,12 @@ textarea {
 
 .titleUser {
 	color: var(--titleUser);
-	position: relative;
+	/* position: relative; */
 }
 
 .nameUser {
 	color: var(--nameUser);
-	position: relative;
+	/* position: relative; */
 }
 
 .userChat {
