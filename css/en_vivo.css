@@ -672,7 +672,6 @@ body {
 		flex-flow: column nowrap;
 		animation: 0.5s ease-out 0s 1 normal none running jBcSpD;
 		overflow-y: auto;
-		margin-top: 50px;
 	}
 
 	.quitar-espacio {
@@ -1131,12 +1130,12 @@ textarea {
 
 .titleUser {
 	color: var(--titleUser);
-	/* position: relative; */
+	position: relative;
 }
 
 .nameUser {
 	color: var(--nameUser);
-	/* position: relative; */
+	position: relative;
 }
 
 .userChat {
