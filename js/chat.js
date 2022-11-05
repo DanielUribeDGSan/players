@@ -11,6 +11,9 @@ const tooltip = document.querySelector('.tooltip');
 const smgV = document.getElementById("msg-escritorio");
 const smgM = document.getElementById("msg-movil");
 
+var seHizoScroll = false;
+var esMiMensaje = true;
+
 Popper.createPopper(button, tooltip);
 Popper.createPopper(button2, tooltip);
 
@@ -18,6 +21,36 @@ function toggle() {
     tooltip.classList.toggle('shown');
 
 }
+
+const scrollBottom = () => {
+    const scrollClass = document.getElementsByClassName('scrollable-area');
+
+    for (var i = 0; i < scrollClass.length; i++) {
+        const element = document.getElementsByClassName('scrollable-area')[i];
+        element.scrollTop = element.scrollHeight;
+    }
+}
+
+document.getElementsByClassName('scrollable-area')[0].addEventListener(
+    'scroll',
+    function () {
+        let scrollTop = document.getElementsByClassName('scrollable-area')[0].scrollTop;
+        const scrollHeight = document.getElementsByClassName('scrollable-area')[0].scrollHeight; // added
+        const offsetHeight = document.getElementsByClassName('scrollable-area')[0].offsetHeight;
+        // var clientHeight = document.getElementById('box').clientHeight;
+        const contentHeight = scrollHeight - offsetHeight; // added
+
+
+        if (contentHeight > scrollTop + 93) // modified
+        {
+            seHizoScroll = true;
+        } else {
+            seHizoScroll = false;
+        }
+
+    },
+    false
+)
 
 document.querySelector('emoji-picker')
     .addEventListener('emoji-click', event => {
@@ -110,7 +143,17 @@ function renderMensajes() {
         $('#list-message2').append(html);
     });
 
+
+    if (seHizoScroll) {
+        notification.show('Hay nuevos mensajes', 'success')
+    } else {
+        scrollBottom();
+    }
+
 }
+
+
+
 
 function mostrarChats() {
     db.collection('col-sala')
@@ -164,7 +207,6 @@ function urlify(text) {
 
 
 function registrarChats(name, email) {
-    console.log(email);
     var separa = name.split(" ", 2);
     var nombreUsuarioSinEspacio = separa[0] + ' ' + separa[1];
     var nombreValidado = nombreUsuarioSinEspacio.replace("undefined", "");
@@ -256,6 +298,8 @@ function registrarChats(name, email) {
                                 id: doc.data().id + 1,
                                 imagen: ""
                             });
+                            // scrollBottom();                                                        
+                            esMiMensaje = true;
                             return null;
                         })
                         .catch(function (error) {
@@ -367,6 +411,8 @@ function registrarChatsM(name, email) {
                                 id: doc.data().id + 1,
                                 imagen: ""
                             });
+                            // scrollBottom();
+                            esMiMensaje = true;
                             return null;
                         })
                         .catch(function (error) {
@@ -421,7 +467,6 @@ function muestraReloj() {
         segundos = '0' + segundos;
     }
 
-    console.log(horas + ':' + minutos + ':' + segundos);
 }
 
 
