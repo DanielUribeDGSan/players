@@ -160,7 +160,7 @@ function renderMensajes() {
 function mostrarChats() {
     db.collection('col-sala')
         .doc(colDocument)
-        .collection('col-mensajes').orderBy('id', 'asc').where("status", "==", "aprobado")
+        .collection('col-mensajes').orderBy('fecha').where("status", "==", "aprobado")
         .onSnapshot((querySnapshot) => {
             $('#list-message').html('');
             $('#list-message2').html('');
@@ -206,8 +206,6 @@ function urlify(text) {
 }
 
 
-
-
 function registrarChats(name, email) {
     var separa = name.split(" ", 2);
     var nombreUsuarioSinEspacio = separa[0] + ' ' + separa[1];
@@ -248,7 +246,8 @@ function registrarChats(name, email) {
         })
         return null;
     }
-    let status = "aprobado";
+
+    let status = "pendiente";
 
     const message = {
         nombre: name,
@@ -260,52 +259,21 @@ function registrarChats(name, email) {
     }
 
     return new Promise((resolve, reject) => {
-
-
         db.collection('col-sala')
             .doc(colDocument)
-            .collection('col-mensajes').orderBy('id', 'desc').limit(1)
-            .get().then(function (querySnapshot) {
-                querySnapshot.forEach((doc) => {
-                    db.collection('col-sala')
-                        .doc(colDocument)
-                        .collection('col-mensajes')
-                        .add({
-                            nombre: name,
-                            mensaje: chat,
-                            fecha: fecha,
-                            email: email,
-                            status: "aprobado",
-                            id: doc.data().id + 1,
-                            day: 1,
-
-                        })
-                        .then(function (docRef) {
-                            const validacion = $(".tooltip").hasClass("shown");
-                            if (validacion) {
-                                toggle();
-                            }
-                            document.getElementById("msg-escritorio").value = "";
-
-                            resolve({
-                                nombre: nombreValidado,
-                                mensaje: mensaje,
-                                fecha: fecha,
-                                status: "aprobado",
-                                id: doc.data().id + 1,
-                                imagen: ""
-                            });
-                            // scrollBottom();                                                        
-                            esMiMensaje = true;
-                            return null;
-                        })
-                        .catch(function (error) {
-                            reject(error)
-                        })
-                });
-            });
-
-
+            .collection('col-mensajes')
+            .add(message)
+            .then(function (docRef) {
+                const validacion = $(".tooltip").hasClass("shown");
+                if (validacion) {
+                    toggle();
+                }
+                document.getElementById("msg-escritorio").value = "";
+                resolve(message)
+            })
+            .catch(function (error) {
+                reject(error)
+            })
     });
 
 }
@@ -353,12 +321,7 @@ function registrarChatsM(name, email) {
         return null;
     }
 
-    let status = "";
-    if (name == '12citvirtual') {
-        status = "aprobado";
-    } else {
-        status = "pendiente";
-    }
+    let status = "pendiente";
 
     const message = {
         nombre: name,
@@ -370,55 +333,22 @@ function registrarChatsM(name, email) {
 
     }
 
-
     return new Promise((resolve, reject) => {
-
-
-
         db.collection('col-sala')
             .doc(colDocument)
-            .collection('col-mensajes').orderBy('id', 'desc').limit(1)
-            .get().then(function (querySnapshot) {
-                querySnapshot.forEach((doc) => {
-                    db.collection('col-sala')
-                        .doc(colDocument)
-                        .collection('col-mensajes')
-                        .add({
-                            nombre: name,
-                            mensaje: chat,
-                            fecha: fecha,
-                            email: email,
-                            status: "aprobado",
-                            id: doc.data().id + 1,
-                            day: 1,
-
-                        })
-                        .then(function (docRef) {
-                            const validacion = $(".tooltip").hasClass("shown");
-                            if (validacion) {
-                                toggle();
-                            }
-                            document.getElementById("msg-movil").value = "";
-
-                            resolve({
-                                nombre: nombreValidado,
-                                mensaje: mensaje,
-                                fecha: fecha,
-                                status: "aprobado",
-                                id: doc.data().id + 1,
-                                imagen: ""
-                            });
-                            // scrollBottom();
-                            esMiMensaje = true;
-                            return null;
-                        })
-                        .catch(function (error) {
-                            reject(error)
-                        })
-                });
-            });
-
-
+            .collection('col-mensajes')
+            .add(message)
+            .then(function (docRef) {
+                const validacion = $(".tooltip").hasClass("shown");
+                if (validacion) {
+                    toggle();
+                }
+                document.getElementById("msg-escritorio").value = "";
+                resolve(message)
+            })
+            .catch(function (error) {
+                reject(error)
+            })
     });
 
 }
