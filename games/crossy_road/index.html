@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"
+        integrity="sha512-avLcnGxl5mqAX/wIKERdb1gFNkOLHh2W5JNCfJm5OugpEPBz7LNXJJ3BDjjwO00AxEY1MqdNjtEmiYhKC0ld7g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r99/three.min.js"
+        integrity="sha512-0tlhMhMGPohLm/YwaskxH7jJuUGqU/XPTl+HE0dWrhGbpEBRIZYMQdbHC0CmyNPzZKTBd8JoVZnvMcL7hzlFOg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div id="counter">0</div>
+
+    <div id="controlls">
+        <div>
+            <button id="forward">
+                <svg width="30" height="30" viewBox="0 0 10 10">
+                    <g transform="rotate(0, 5,5)">
+                        <path d="M5,4 L7,6 L3,6 L5,4" />
+                    </g>
+                </svg>
+            </button>
+            <button id="left">
+                <svg width="30" height="30" viewBox="0 0 10 10">
+                    <g transform="rotate(-90, 5,5)">
+                        <path d="M5,4 L7,6 L3,6 L5,4" />
+                    </g>
+                </svg>
+            </button>
+            <button id="backward">
+                <svg width="30" height="30" viewBox="0 0 10 10">
+                    <g transform="rotate(180, 5,5)">
+                        <path d="M5,4 L7,6 L3,6 L5,4" />
+                    </g>
+                </svg>
+            </button>
+            <button id="right">
+                <svg width="30" height="30" viewBox="0 0 10 10">
+                    <g transform="rotate(90, 5,5)">
+                        <path d="M5,4 L7,6 L3,6 L5,4" />
+                    </g>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="end">
+        <button id="retry">Volverlo a intentar</button>
+    </div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+<script src='../../js/conexion.js?ver=1.0.10'></script>
+<script src='../../js/autenticacion.js?ver=1.0.10'></script>
+
+<script src="./js/index.js?ver=1.0.10"></script>
+
+</html>
