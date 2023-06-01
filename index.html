@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
     <title>Evento</title>
     <!-- <link rel="icon" type="image/png" href="img/icon.png"> -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
 
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
 
-    <link href="./css/colors.css" rel="stylesheet">
-    <link href="./css/en_vivo.css?ver=1.0.6" rel="stylesheet">
-    <link href="./css/en_vivo2.css?ver=1.0.6" rel="stylesheet">
-    <!-- <link href="./css/loading.css?ver=1.0.6" rel="stylesheet"> -->
+    <link href="./css/colors.css" rel="stylesheet" />
+    <link href="./css/en_vivo.css?ver=1.0.7" rel="stylesheet" />
+    <link href="./css/en_vivo2.css?ver=1.0.7" rel="stylesheet" />
+    <!-- <link href="./css/loading.css?ver=1.0.7" rel="stylesheet"> -->
 
-    <!-- <link href="./css/validarMovil2.css?ver=1.0.6" rel="stylesheet">  -->
-
+    <!-- <link href="./css/validarMovil2.css?ver=1.0.7" rel="stylesheet">  -->
 
     <!-- Alertas -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
 
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
@@ -39,28 +47,25 @@
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-storage.js"></script>
-    <script src="./js/conexion.js?ver=1.0.6"></script>
-    <script src="./js/jquery.min.js?ver=1.0.6"></script>
+    <script src="./js/conexion.js?ver=1.0.7"></script>
+    <script src="./js/jquery.min.js?ver=1.0.7"></script>
     <script>
-        const getParamValue = (paramName) => {
-            let url = window.location.search.substring(1);
-            let qArray = url.split('&');
-            for (let i = 0; i < qArray.length; i++) {
-                let pArr = qArray[i].split('=');
-                if (pArr[0] == paramName)
-                    return pArr[1];
-            }
+      const getParamValue = (paramName) => {
+        let url = window.location.search.substring(1);
+        let qArray = url.split('&');
+        for (let i = 0; i < qArray.length; i++) {
+          let pArr = qArray[i].split('=');
+          if (pArr[0] == paramName) return pArr[1];
         }
+      };
     </script>
+  </head>
 
-</head>
-
-<body class="bg-fondo-lobby">
-
+  <body class="bg-fondo-lobby">
     <!-- loader -->
 
     <div class="tooltip" role="tooltip">
-        <emoji-picker></emoji-picker>
+      <emoji-picker></emoji-picker>
     </div>
 
     <!-- <div class="rotate-indicator"><img src="img/vertical.gif" alt="Gira tu pantalla">
@@ -74,63 +79,86 @@
     <input type="hidden" id="player_id" />
 
     <script>
-        document.querySelector('#player_id').value = 1;        
+      document.querySelector('#player_id').value = 1;
     </script>
 
     <div class="toast-message ocultar">
-        <a class="pointer btn-toast" onclick="mostrarUltimoChat()">
-            <span class="close"></span>
-            <div class="message">
-                This is an Alert! But these are some junks to see how alert looks in long messages.
-            </div>
-        </a>
+      <a class="pointer btn-toast" onclick="mostrarUltimoChat()">
+        <span class="close"></span>
+        <div class="message">
+          This is an Alert! But these are some junks to see how alert looks in
+          long messages.
+        </div>
+      </a>
     </div>
 
-    <div class="toast-message2 animate__animated animate__bounce  ocultar">
-        <a class="pointer btn-toast" onclick="validarTab()">
-            <span class="close"></span>
-            <div class="message">
-                This is an Alert! But these are some junks to see how alert looks in long messages.
-            </div>
-        </a>
+    <div class="toast-message2 animate__animated animate__bounce ocultar">
+      <a class="pointer btn-toast" onclick="validarTab()">
+        <span class="close"></span>
+        <div class="message">
+          This is an Alert! But these are some junks to see how alert looks in
+          long messages.
+        </div>
+      </a>
     </div>
-
 
     <div class="view__Background-sc-2eu1y9-0 eddtSv">
-        <div class="styles__Container-sc-18bvhk3-0 hgXriw">
-            <div class="styles__AdminBarContainer-sc-18bvhk3-1 bULlot">
-                <div class="styles__ContentContainer-sc-18bvhk3-2 fUiPEf">
-                    <div id="site" class="styles__Wrapper-sc-18bvhk3-5 fgNFBH">
-                        <div id="mobile-header" class="MobileHeader__Container-sc-1fffowz-0 fdbmrw">
-                            <header id="header" class="container-fluid bg-header w-100 h-100"
-                                style="padding: 0px; margin: 0px;">
-                                <div class="bg-header container-fluid">
-                                    <nav
-                                        class="navbar navbar-expand-lg navbar-light align-items-end px-0 d-flex align-items-center pd-mr-0">
-                                        <span id="regresarInicio" class="navbar-brand pointer">
-                                            <!-- <img src="{{ asset('player/img/PI_LOGO_NOVO.png') }}" class="logo-header-pc"
+      <div class="styles__Container-sc-18bvhk3-0 hgXriw">
+        <div class="styles__AdminBarContainer-sc-18bvhk3-1 bULlot">
+          <div class="styles__ContentContainer-sc-18bvhk3-2 fUiPEf">
+            <div id="site" class="styles__Wrapper-sc-18bvhk3-5 fgNFBH">
+              <div
+                id="mobile-header"
+                class="MobileHeader__Container-sc-1fffowz-0 fdbmrw"
+              >
+                <header
+                  id="header"
+                  class="container-fluid bg-header w-100 h-100"
+                  style="padding: 0px; margin: 0px"
+                >
+                  <div class="bg-header container-fluid">
+                    <nav
+                      class="navbar navbar-expand-lg navbar-light align-items-end px-0 d-flex align-items-center pd-mr-0"
+                    >
+                      <span id="regresarInicio" class="navbar-brand pointer">
+                        <!-- <img src="{{ asset('player/img/PI_LOGO_NOVO.png') }}" class="logo-header-pc"
                                                 alt="silanes"> -->
-                                        </span>
-                                        <!-- <span class="navbar-brand pt-3  text-white">Silanes</span> -->
-                                        <!-- <img src="{{ asset('player/img/NNLS_LOGO_NNLS.png') }}" class="img-fluid"
+                      </span>
+                      <!-- <span class="navbar-brand pt-3  text-white">Silanes</span> -->
+                      <!-- <img src="{{ asset('player/img/NNLS_LOGO_NNLS.png') }}" class="img-fluid"
                                             alt="boton" style="width:26vw;"> -->
-                                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-                                            aria-expanded="false" aria-label="Toggle navigation">
-                                            <span class="navbar-toggler-icon"></span>
-                                        </button>
-                                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                                            <ul class="navbar-nav ml-auto" id="menu-nav">
-                                                <li
-                                                    class="nav-item border-r-azul fw-300 pointer d-flex align-items-center mt-3">
-                                                    <!-- <a class="text-white"
+                      <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                      >
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div
+                        class="collapse navbar-collapse"
+                        id="navbarNavDropdown"
+                      >
+                        <ul class="navbar-nav ml-auto" id="menu-nav">
+                          <li
+                            class="nav-item border-r-azul fw-300 pointer d-flex align-items-center mt-3"
+                          >
+                            <!-- <a class="text-white"
                                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                                         id="cerrarSesion" class="nav-link">CERRAR
                                                         SESIÓN</a> -->
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                        style="display: none;">
-                                                        @csrf </form>
-                                                    <!-- {{-- <div class="btn_1">
+                            <form
+                              id="logout-form"
+                              action="{{ route('logout') }}"
+                              method="POST"
+                              style="display: none"
+                            >
+                              @csrf
+                            </form>
+                            <!-- {{-- <div class="btn_1">
                                                         <a class="btn">
                                                             <img src="{{ asset('player/img/BOTON_CARDIO.png') }}"
                                                                 class="img-fluid" alt="boton" style="width: 19vw;">
@@ -141,95 +169,148 @@
                                                             class="img-fluid" alt="boton" style="width: 38vw;">
                                                         <p class="text-white">Player 2</p>
                                                     </a> --}} -->
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </nav>
-                                </div>
-                            </header>
-                        </div>
-                        <div class="view__OuterContainer-sc-1b6le3u-1 hyYGOQ styles__StyledContent-sc-18bvhk3-3 nurBm">
-                            <div class="overlay">
-                            </div>
-                            <div id="site-content" class="view__InnerContainer-sc-1b6le3u-2 iNIhqh">
-                                <!-- player -->
-                                <div
-                                    class="view__Container-sc-1txx3rf-1 kCcBST view-sc-1b6le3u-0 iROTjR styles__StyledContent-sc-18bvhk3-3 nurBm">
-                                    <div class="view__Container-sc-1ck3h5w-2 jhehLm view__StyledHeader-sc-1txx3rf-6 jBTXUf"
-                                        id="header2">
-                                        <header class="container-fluid bg-header w-100 h-100"
-                                            style="padding: 0px; margin: 0px;height:100% ;">
-                                            <div class="container" style="width: 100%;max-width: 100%;">
-                                                <nav
-                                                    class="navbar navbar-expand-lg navbar-light align-items-end px-0 d-flex align-items-center pd-mr-0">
-                                                    <span id="regresarInicio" class="navbar-brand pointer">
-                                                        <!-- <img src="{{ asset('player/img/PI_LOGO_NOVO.png') }}"
+                          </li>
+                        </ul>
+                      </div>
+                    </nav>
+                  </div>
+                </header>
+              </div>
+              <div
+                class="view__OuterContainer-sc-1b6le3u-1 hyYGOQ styles__StyledContent-sc-18bvhk3-3 nurBm"
+              >
+                <div class="overlay"></div>
+                <div
+                  id="site-content"
+                  class="view__InnerContainer-sc-1b6le3u-2 iNIhqh"
+                >
+                  <!-- player -->
+                  <div
+                    class="view__Container-sc-1txx3rf-1 kCcBST view-sc-1b6le3u-0 iROTjR styles__StyledContent-sc-18bvhk3-3 nurBm"
+                  >
+                    <div
+                      class="view__Container-sc-1ck3h5w-2 jhehLm view__StyledHeader-sc-1txx3rf-6 jBTXUf"
+                      id="header2"
+                    >
+                      <header
+                        class="container-fluid bg-header w-100 h-100"
+                        style="padding: 0px; margin: 0px; height: 100%"
+                      >
+                        <div
+                          class="container"
+                          style="width: 100%; max-width: 100%"
+                        >
+                          <nav
+                            class="navbar navbar-expand-lg navbar-light align-items-end px-0 d-flex align-items-center pd-mr-0"
+                          >
+                            <span
+                              id="regresarInicio"
+                              class="navbar-brand pointer"
+                            >
+                              <!-- <img src="{{ asset('player/img/PI_LOGO_NOVO.png') }}"
                                                             class="logo-header-pc" alt="silanes"> -->
-                                                    </span>
-                                                    <!-- <span class="navbar-brand pt-4 mt-2 text-white">Silanes</span>                                                     -->
-                                                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                                        data-target="#navbarNavDropdown"
-                                                        aria-controls="navbarNavDropdown" aria-expanded="false"
-                                                        aria-label="Toggle navigation">
-                                                        <span class="navbar-toggler-icon"></span>
-                                                    </button>
-                                                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                                                        <ul class="navbar-nav ml-auto" id="menu-nav">
-                                                            <li class="nav-item fw-300 pointer">
-                                                                <!-- <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            </span>
+                            <!-- <span class="navbar-brand pt-4 mt-2 text-white">Silanes</span>                                                     -->
+                            <button
+                              class="navbar-toggler"
+                              type="button"
+                              data-toggle="collapse"
+                              data-target="#navbarNavDropdown"
+                              aria-controls="navbarNavDropdown"
+                              aria-expanded="false"
+                              aria-label="Toggle navigation"
+                            >
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div
+                              class="collapse navbar-collapse"
+                              id="navbarNavDropdown"
+                            >
+                              <ul class="navbar-nav ml-auto" id="menu-nav">
+                                <li class="nav-item fw-300 pointer">
+                                  <!-- <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                                                     id="cerrarSesion" class="nav-link text-white">CERRAR
                                                                     SESIÓN</a> -->
-                                                                <form id="logout-form" action="{{ route('logout') }}"
-                                                                    method="POST" style="display: none;">
-                                                                    @csrf </form>
-                                                                <!-- {{-- <a class="btn mt-2" href="{{ route('evento2') }}">
+                                  <form
+                                    id="logout-form"
+                                    action="{{ route('logout') }}"
+                                    method="POST"
+                                    style="display: none"
+                                  >
+                                    @csrf
+                                  </form>
+                                  <!-- {{-- <a class="btn mt-2" href="{{ route('evento2') }}">
                                                                     <img src="{{ asset('player/img/BOTON_CARDIO.png') }}"
                                                                         class="img-fluid" alt="boton"
                                                                         style="width: 19vw;">
                                                                     <p class="text-white h4">Player 2</p>
                                                                 </a> --}} -->
-
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </nav>
-                                            </div>
-                                        </header>
-                                        <!--<div class="EditModeRegion__Container-sc-1exa3mc-0 burGhm HeaderLinksRegion__StyledEditModeRegion-sc-7a2i0q-0 dWcybW" id=""></div>-->
-                                    </div>
-                                    <!-- video  -->
-                                    <div
-                                        class="view__Container-sc-1do9d5-0 gexBxF styles__StyledArtworkWrapper-sc-1xcmxfw-2 jFVYDc view__StyledVideo-sc-1txx3rf-7 bjIRac">
-                                        <div class="view__Container-fpstm5-0 fAFNBk">
-                                            <div class="view__BoundingBox-fpstm5-1 fAYqSf">
-                                                <div class="styles__VideoContentWrapper-sc-1xcmxfw-0 KBAxZ">
-                                                    <div class="OverlayRenderers__Wrapper-sc-157i0dy-0 kHmjYG">
-                                                        <div class="view__Wrapper-sc-1im5shw-2 fZHLRS live"
-                                                            style="left: 0px;position: absolute;top: 0px;width: 100%;height: 100%;">
-                                                            <div style="width: 100%; height: 100%;" id="iframe-vivo">
-                                                                <iframe class="iframe"
-                                                                    src="https://vimeo.com/event/1888841/embed"
-                                                                    frameborder="0"
-                                                                    allow="autoplay; fullscreen; picture-in-picture"
-                                                                    allowfullscreen
-                                                                    style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Contenido -->
-                                    <div
-                                        class="view__UnderScroll-sc-1txx3rf-2 hDyYHm view-sc-1b6le3u-0 iROTjR styles__StyledContent-sc-18bvhk3-3 nurBm ocultar-movil">
-                                        <div class="styles__Container-xv9fcv-0 bihlro">
-                                            <div class="container-fluid mt-4">
-                                                <!-- <img src="{{ asset('player/img/NNLS_LOGO_NNLS.png') }}"
+                                </li>
+                              </ul>
+                            </div>
+                          </nav>
+                        </div>
+                      </header>
+                      <!--<div class="EditModeRegion__Container-sc-1exa3mc-0 burGhm HeaderLinksRegion__StyledEditModeRegion-sc-7a2i0q-0 dWcybW" id=""></div>-->
+                    </div>
+                    <!-- video  -->
+                    <div
+                      class="view__Container-sc-1do9d5-0 gexBxF styles__StyledArtworkWrapper-sc-1xcmxfw-2 jFVYDc view__StyledVideo-sc-1txx3rf-7 bjIRac"
+                    >
+                      <div class="view__Container-fpstm5-0 fAFNBk">
+                        <div class="view__BoundingBox-fpstm5-1 fAYqSf">
+                          <div
+                            class="styles__VideoContentWrapper-sc-1xcmxfw-0 KBAxZ"
+                          >
+                            <div
+                              class="OverlayRenderers__Wrapper-sc-157i0dy-0 kHmjYG"
+                            >
+                              <div
+                                class="view__Wrapper-sc-1im5shw-2 fZHLRS live"
+                                style="
+                                  left: 0px;
+                                  position: absolute;
+                                  top: 0px;
+                                  width: 100%;
+                                  height: 100%;
+                                "
+                              >
+                                <div
+                                  style="width: 100%; height: 100%"
+                                  id="iframe-vivo"
+                                >
+                                  <iframe
+                                    class="iframe"
+                                    src="https://vimeo.com/event/1888841/embed"
+                                    frameborder="0"
+                                    allow="autoplay; fullscreen; picture-in-picture"
+                                    allowfullscreen
+                                    style="
+                                      position: absolute;
+                                      top: 0;
+                                      left: 0;
+                                      width: 100%;
+                                      height: 100%;
+                                    "
+                                  ></iframe>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Contenido -->
+                    <div
+                      class="view__UnderScroll-sc-1txx3rf-2 hDyYHm view-sc-1b6le3u-0 iROTjR styles__StyledContent-sc-18bvhk3-3 nurBm ocultar-movil"
+                    >
+                      <div class="styles__Container-xv9fcv-0 bihlro">
+                        <div class="container-fluid mt-4">
+                          <!-- <img src="{{ asset('player/img/NNLS_LOGO_NNLS.png') }}"
                                                     class="img-fluid mt-3" alt="boton" style="width:17vw;"
                                                     style="margin-top: 0.1rem;"> -->
-                                                <div class="row w-100 d-flex align-items-center ">
-                                                    <!-- <div
+                          <div class="row w-100 d-flex align-items-center">
+                            <!-- <div
                                                         class="col-3 d-flex align-items-center justify-content-center">
                                                         <a class="btn" onclick="cambiarIframe(1)">
                                                             <img src="{{ asset('player/img/BOTON_SNC.png') }}"
@@ -269,21 +350,22 @@
                                                                     style="width: 15vw;"></a>
                                                         </div>
                                                     </div>  -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                          </div>
                         </div>
-                        <!-- Chat mobile -->
-                        <div class="view__Container-udjkyn-0 fAoxJI ocultar-escritorio">
-                            <div class="view__SidebarContainer-sc-14hsoh1-2 TYikQ view__StyledSidebar-udjkyn-1 ieYNEF">
-                                <div class="overlay"></div>
-                                <div class="view__SidebarBody-sc-14hsoh1-3 cnqQZy">
-                                    <!-- Nav -->
-                                    <!-- <div
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Chat mobile -->
+              <div class="view__Container-udjkyn-0 fAoxJI ocultar-escritorio">
+                <div
+                  class="view__SidebarContainer-sc-14hsoh1-2 TYikQ view__StyledSidebar-udjkyn-1 ieYNEF"
+                >
+                  <div class="overlay"></div>
+                  <div class="view__SidebarBody-sc-14hsoh1-3 cnqQZy">
+                    <!-- Nav -->
+                    <!-- <div
                                         class="PanelSelector__Container-sc-1bjv9tc-0 khwEis view__StyledPanelSelector-sc-14hsoh1-5 iocjJm"
                                         id="panel-select2"><button
                                             class="PanelSelector__PanelButton-sc-1bjv9tc-1 hXrCgS option active"
@@ -313,243 +395,329 @@
                                             </div>
                                         </button>
                                     </div>  -->
-                                    <!-- Termina nav -->
-                                    <div class="view__Panels-sc-14hsoh1-6 iQvqjV sidebar-panel-root panel">
-                                        <div class="view__StyledPanel-b7rtcq-0 eUTMEg" id="tab-content-1">
-                                            <!-- Form chat -->
-                                            <section data-test-selector="chat-room-component-layout"
-                                                class="chat-room tw-flex tw-flex-column tw-flex-grow-1 tw-flex-shrink-1 tw-full-width"
-                                                style="height: 100% !important;">
-                                                <div
-                                                    class="chat-room__content tw-c-text-base tw-flex tw-flex-column tw-flex-grow-1 tw-flex-nowrap tw-full-height tw-relative">
-
-                                                    <div class="tw-hide"></div>
-                                                    <div class="chat-list--default font-scale--default tw-flex tw-flex-column tw-flex-grow-1 tw-overflow-hidden"
-                                                        style="z-index: 1;">
-                                                        <div class="tw-flex tw-flex-column tw-flex-grow-1 tw-overflow-hidden"
-                                                            style="position: relative;">
-                                                            <div class="resize-detector">
-                                                                <div class="resize-detector">
-                                                                    <div class="resize-detector__grow"
-                                                                        style="width: 100000px; height: 100000px;">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="resize-detector">
-                                                                    <div class="resize-detector__shrink"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="scrollable-area"
-                                                                data-test-selector="scrollable-area-wrapper"
-                                                                data-a-target="chat-scroller" data-simplebar="init">
-                                                                <div class="simplebar-track vertical"
-                                                                    style="visibility: visible;">
-                                                                    <div class="simplebar-scrollbar"
-                                                                        style="top: 2px; height: 325px;"></div>
-                                                                </div>
-                                                                <div class="simplebar-track horizontal"
-                                                                    style="visibility: hidden;">
-                                                                    <div class="simplebar-scrollbar"></div>
-                                                                </div>
-                                                                <div class="simplebar-scroll-content"
-                                                                    style="padding-right: 20px; margin-bottom: -20px;">
-                                                                    <div class="simplebar-content">
-                                                                        <div class="chat-scrollable-area__message-container tw-flex-grow-1 tw-pd-b-1"
-                                                                            data-test-selector="chat-scrollable-area__message-container">
-                                                                            <div class="chat-line__status"
-                                                                                data-a-target="chat-welcome-message">
-                                                                                <span class="bienvenidaChat">Te
-                                                                                    damos la
-                                                                                    bienvenida a la sala de
-                                                                                    chat</span>
-                                                                            </div>
-                                                                            <div class="___class_+?107___"
-                                                                                id="list-message2">
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                    <!-- Termina nav -->
+                    <div
+                      class="view__Panels-sc-14hsoh1-6 iQvqjV sidebar-panel-root panel"
+                    >
+                      <div
+                        class="view__StyledPanel-b7rtcq-0 eUTMEg"
+                        id="tab-content-1"
+                      >
+                        <!-- Form chat -->
+                        <section
+                          data-test-selector="chat-room-component-layout"
+                          class="chat-room tw-flex tw-flex-column tw-flex-grow-1 tw-flex-shrink-1 tw-full-width"
+                          style="height: 100% !important"
+                        >
+                          <div
+                            class="chat-room__content tw-c-text-base tw-flex tw-flex-column tw-flex-grow-1 tw-flex-nowrap tw-full-height tw-relative"
+                          >
+                            <div class="tw-hide"></div>
+                            <div
+                              class="chat-list--default font-scale--default tw-flex tw-flex-column tw-flex-grow-1 tw-overflow-hidden"
+                              style="z-index: 1"
+                            >
+                              <div
+                                class="tw-flex tw-flex-column tw-flex-grow-1 tw-overflow-hidden"
+                                style="position: relative"
+                              >
+                                <div class="resize-detector">
+                                  <div class="resize-detector">
+                                    <div
+                                      class="resize-detector__grow"
+                                      style="width: 100000px; height: 100000px"
+                                    ></div>
+                                  </div>
+                                  <div class="resize-detector">
+                                    <div class="resize-detector__shrink"></div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="scrollable-area"
+                                  data-test-selector="scrollable-area-wrapper"
+                                  data-a-target="chat-scroller"
+                                  data-simplebar="init"
+                                >
+                                  <div
+                                    class="simplebar-track vertical"
+                                    style="visibility: visible"
+                                  >
+                                    <div
+                                      class="simplebar-scrollbar"
+                                      style="top: 2px; height: 325px"
+                                    ></div>
+                                  </div>
+                                  <div
+                                    class="simplebar-track horizontal"
+                                    style="visibility: hidden"
+                                  >
+                                    <div class="simplebar-scrollbar"></div>
+                                  </div>
+                                  <div
+                                    class="simplebar-scroll-content"
+                                    style="
+                                      padding-right: 20px;
+                                      margin-bottom: -20px;
+                                    "
+                                  >
+                                    <div class="simplebar-content">
+                                      <div
+                                        class="chat-scrollable-area__message-container tw-flex-grow-1 tw-pd-b-1"
+                                        data-test-selector="chat-scrollable-area__message-container"
+                                      >
+                                        <div
+                                          class="chat-line__status"
+                                          data-a-target="chat-welcome-message"
+                                        >
+                                          <span class="bienvenidaChat"
+                                            >Te damos la bienvenida a la sala de
+                                            chat</span
+                                          >
+                                        </div>
+                                        <div
+                                          class="___class_+?107___"
+                                          id="list-message2"
+                                        ></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="chat-room__notifications tw-absolute tw-full-width tw-z-above"
+                            ></div>
+                            <div
+                              class="chat-input tw-block tw-pd-b-1 tw-pd-x-1"
+                            >
+                              <div class="___class_+?110___"></div>
+                              <div>
+                                <div class="tw-block tw-relative tw-z-default">
+                                  <div
+                                    class="chat-input-tray__open bg-input chat-input-tray__open--persistent tw-block tw-border-b tw-border-l tw-border-r tw-border-radius-large tw-border-t tw-c-background-alt tw-elevation-0 tw-left-0 tw-pd-0 tw-relative tw-right-0 tw-z-below"
+                                  >
+                                    <div
+                                      class="chat-input-tray__clickable"
+                                      data-test-selector="chat-input-tray-click-container"
+                                    >
+                                      <div class="___class_+?114___">
+                                        <div
+                                          class="tw-flex tw-justify-content-between tw-pd-b-05 tw-pd-x-05"
+                                        >
+                                          <div
+                                            class="common-tray-header__icon tw-mg-05"
+                                          >
+                                            <div
+                                              class="chat-restriction-tray-icon tw-c-text-alt-2"
+                                            >
+                                              <figure
+                                                class="ScFigure-sc-1j5mt50-0 laJGEQ tw-svg"
+                                              >
+                                                <svg
+                                                  type="color-fill-current"
+                                                  width="18px"
+                                                  height="18px"
+                                                  version="1.1"
+                                                  viewBox="0 0 20 20"
+                                                  x="0px"
+                                                  y="0px"
+                                                  class="ScSvg-sc-1j5mt50-1 jLaQtw"
+                                                >
+                                                  <g>
+                                                    <path
+                                                      fill-rule="evenodd"
+                                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 8V6h2v2H9zm0 6V9h2v5H9z"
+                                                      clip-rule="evenodd"
+                                                    ></path>
+                                                  </g>
+                                                </svg>
+                                              </figure>
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="tw-align-items-center tw-flex tw-flex-grow-1 tw-mg-x-05"
+                                          >
+                                            <p
+                                              class="tw-c-text-alt-2 tw-strong cl-gris"
+                                            >
+                                              Chat filtrado
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="___class_+?122___">
+                                    <div
+                                      class="tw-block tw-border-radius-large tw-elevation-0 tw-left-0 tw-pd-0 tw-right-0 tw-z-below"
+                                    ></div>
+                                    <div
+                                      class="tw-block tw-border-radius-large tw-pd-0"
+                                    >
+                                      <div class="tw-relative">
+                                        <div
+                                          class="chat-input__textarea bg-input"
+                                        >
+                                          <div class="font-scale--default">
+                                            <input
+                                              type="text"
+                                              class="ScInputBase-sc-1wz0osy-0 ScTextArea-sc-1ywwys8-0 dTtjBt tw-border-radius-medium tw-font-size-6 tw-textarea tw-textarea--no-resize"
+                                              maxlength="500"
+                                              placeholder="Enviar un mensaje"
+                                              rows="1"
+                                              style="padding-right: 3.5rem"
+                                              id="msg-movil"
+                                            />
+                                          </div>
+                                          <div
+                                            class="tw-absolute tw-bottom-0 tw-right-0"
+                                          >
+                                            <div
+                                              class="chat-input__input-icons"
+                                            >
+                                              <button
+                                                class="ScCoreButton-sc-1qn4ixc-0 gqSiKD tw-button-icon tw-button-icon--secondary tw-core-button"
+                                                onclick="toggle()"
+                                                id="emoji2"
+                                              >
+                                                <span
+                                                  class="tw-button-icon__icon"
+                                                >
+                                                  <div
+                                                    style="
+                                                      width: 2rem;
+                                                      height: 2rem;
+                                                    "
+                                                  >
                                                     <div
-                                                        class="chat-room__notifications tw-absolute tw-full-width tw-z-above">
+                                                      class="ScIconLayout-sc-1bgeryd-0 kbOjdP tw-icon"
+                                                    >
+                                                      <div
+                                                        class="ScAspectRatio-sc-1sw3lwy-1 dNNaBC tw-aspect"
+                                                      >
+                                                        <div
+                                                          class="ScAspectSpacer-sc-1sw3lwy-0 gkBhyN"
+                                                        ></div>
+                                                        <i
+                                                          class="far fa-laugh-beam"
+                                                          style="
+                                                            font-size: 1.6rem;
+                                                            color: #000;
+                                                          "
+                                                        ></i>
+                                                      </div>
                                                     </div>
-                                                    <div class="chat-input tw-block tw-pd-b-1 tw-pd-x-1">
-                                                        <div class="___class_+?110___"></div>
-                                                        <div>
-                                                            <div class="tw-block tw-relative tw-z-default">
-                                                                <div
-                                                                    class="chat-input-tray__open bg-input chat-input-tray__open--persistent tw-block tw-border-b tw-border-l tw-border-r tw-border-radius-large tw-border-t tw-c-background-alt tw-elevation-0 tw-left-0 tw-pd-0 tw-relative tw-right-0 tw-z-below">
-                                                                    <div class="chat-input-tray__clickable"
-                                                                        data-test-selector="chat-input-tray-click-container">
-                                                                        <div class="___class_+?114___">
-                                                                            <div
-                                                                                class="tw-flex tw-justify-content-between tw-pd-b-05 tw-pd-x-05">
-                                                                                <div
-                                                                                    class="common-tray-header__icon tw-mg-05">
-                                                                                    <div
-                                                                                        class="chat-restriction-tray-icon tw-c-text-alt-2">
-                                                                                        <figure
-                                                                                            class="ScFigure-sc-1j5mt50-0 laJGEQ tw-svg">
-                                                                                            <svg type="color-fill-current"
-                                                                                                width="18px"
-                                                                                                height="18px"
-                                                                                                version="1.1"
-                                                                                                viewBox="0 0 20 20"
-                                                                                                x="0px" y="0px"
-                                                                                                class="ScSvg-sc-1j5mt50-1 jLaQtw">
-                                                                                                <g>
-                                                                                                    <path
-                                                                                                        fill-rule="evenodd"
-                                                                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 8V6h2v2H9zm0 6V9h2v5H9z"
-                                                                                                        clip-rule="evenodd">
-                                                                                                    </path>
-                                                                                                </g>
-                                                                                            </svg>
-                                                                                        </figure>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="tw-align-items-center tw-flex tw-flex-grow-1 tw-mg-x-05">
-                                                                                    <p
-                                                                                        class="tw-c-text-alt-2 tw-strong cl-gris">
-                                                                                        Chat filtrado</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="___class_+?122___">
-                                                                    <div
-                                                                        class="tw-block tw-border-radius-large tw-elevation-0 tw-left-0 tw-pd-0 tw-right-0 tw-z-below">
-                                                                    </div>
-                                                                    <div
-                                                                        class="tw-block tw-border-radius-large tw-pd-0">
-                                                                        <div class="tw-relative">
-                                                                            <div class="chat-input__textarea bg-input">
-                                                                                <div class="font-scale--default">
-                                                                                    <input type="text"
-                                                                                        class="ScInputBase-sc-1wz0osy-0 ScTextArea-sc-1ywwys8-0 dTtjBt tw-border-radius-medium tw-font-size-6 tw-textarea tw-textarea--no-resize"
-                                                                                        maxlength="500"
-                                                                                        placeholder="Enviar un mensaje"
-                                                                                        rows="1"
-                                                                                        style="padding-right: 3.5rem;"
-                                                                                        id="msg-movil">
-                                                                                </div>
-                                                                                <div
-                                                                                    class="tw-absolute tw-bottom-0 tw-right-0">
-                                                                                    <div
-                                                                                        class="chat-input__input-icons">
-                                                                                        <button
-                                                                                            class="ScCoreButton-sc-1qn4ixc-0 gqSiKD tw-button-icon tw-button-icon--secondary tw-core-button"
-                                                                                            onclick="toggle()"
-                                                                                            id="emoji2"><span
-                                                                                                class="tw-button-icon__icon">
-                                                                                                <div
-                                                                                                    style="width: 2rem; height: 2rem;">
-                                                                                                    <div
-                                                                                                        class="ScIconLayout-sc-1bgeryd-0 kbOjdP tw-icon">
-                                                                                                        <div
-                                                                                                            class="ScAspectRatio-sc-1sw3lwy-1 dNNaBC tw-aspect">
-                                                                                                            <div
-                                                                                                                class="ScAspectSpacer-sc-1sw3lwy-0 gkBhyN">
-                                                                                                            </div><i
-                                                                                                                class="far fa-laugh-beam"
-                                                                                                                style="font-size: 1.6rem;color:#000;"></i>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </span> <span
-                                                                                                class="caret"></span></button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="chat-input__buttons-container tw-flex tw-justify-content-between tw-mg-t-1"
-                                                                data-test-selector="chat-input-buttons-container"
-                                                                style="direction: rtl;">
-                                                                <div class="tw-flex tw-flex-row">
-                                                                    <div class="tw-relative tw-z-default">
-                                                                        <div>
-                                                                            <div data-test-selector="community-points-summary"
-                                                                                class="community-points-summary tw-align-items-center tw-flex tw-full-height">
-                                                                                <div
-                                                                                    class="tw-align-items-center tw-flex tw-relative">
-                                                                                    <div
-                                                                                        class="tw-absolute tw-left-0 tw-top-0">
-                                                                                    </div>
-                                                                                    <div class="tw-inline-flex">
-                                                                                        <button
-                                                                                            class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonText-sc-1qn4ixc-3 kGWcAX tw-core-button"
-                                                                                            aria-describedby="e17d6d0eb2ad11094d82c1655a3e07cf">
-                                                                                            <div
-                                                                                                class="ScCoreButtonLabel-lh1yxp-0 xsINH tw-core-button-label">
-                                                                                                <div data-a-target="tw-core-button-label-text"
-                                                                                                    class="tw-align-items-center tw-flex tw-flex-grow-0 tw-justify-content-start">
-                                                                                                    <div
-                                                                                                        class="tw-align-items-center tw-flex">
+                                                  </div>
+                                                </span>
+                                                <span class="caret"></span>
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="chat-input__buttons-container tw-flex tw-justify-content-between tw-mg-t-1"
+                                  data-test-selector="chat-input-buttons-container"
+                                  style="direction: rtl"
+                                >
+                                  <div class="tw-flex tw-flex-row">
+                                    <div class="tw-relative tw-z-default">
+                                      <div>
+                                        <div
+                                          data-test-selector="community-points-summary"
+                                          class="community-points-summary tw-align-items-center tw-flex tw-full-height"
+                                        >
+                                          <div
+                                            class="tw-align-items-center tw-flex tw-relative"
+                                          >
+                                            <div
+                                              class="tw-absolute tw-left-0 tw-top-0"
+                                            ></div>
+                                            <div class="tw-inline-flex">
+                                              <button
+                                                class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonText-sc-1qn4ixc-3 kGWcAX tw-core-button"
+                                                aria-describedby="e17d6d0eb2ad11094d82c1655a3e07cf"
+                                              >
+                                                <div
+                                                  class="ScCoreButtonLabel-lh1yxp-0 xsINH tw-core-button-label"
+                                                >
+                                                  <div
+                                                    data-a-target="tw-core-button-label-text"
+                                                    class="tw-align-items-center tw-flex tw-flex-grow-0 tw-justify-content-start"
+                                                  >
+                                                    <div
+                                                      class="tw-align-items-center tw-flex"
+                                                    ></div>
+                                                  </div>
+                                                </div>
+                                              </button>
+                                            </div>
+                                            <div
+                                              class="tw-absolute tw-left-0 tw-top-0"
+                                            ></div>
+                                            <div
+                                              class="tw-relative tw-right-0 tw-z-above"
+                                            ></div>
+                                          </div>
+                                          <div
+                                            class="tw-full-height tw-relative tw-z-above"
+                                          >
+                                            <div
+                                              class="tw-transition tw-transition--exit-done tw-transition__fade tw-transition__fade--exit-done"
+                                              style="
+                                                transition-delay: 0ms;
+                                                transition-duration: 300ms;
+                                              "
+                                            ></div>
+                                          </div>
 
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </button>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="tw-absolute tw-left-0 tw-top-0">
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="tw-relative tw-right-0 tw-z-above">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="tw-full-height tw-relative tw-z-above">
-                                                                                    <div class="tw-transition tw-transition--exit-done tw-transition__fade tw-transition__fade--exit-done"
-                                                                                        style="transition-delay: 0ms; transition-duration: 300ms;">
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <button
-                                                                                    class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonPrimary-sc-1qn4ixc-1 jeBpig tw-core-button"
-                                                                                    id="btn-msg-movil"
-                                                                                    onclick="registrarChatsM(getParamValue('user'), getParamValue('email'))">
-                                                                                    <div
-                                                                                        class="ScCoreButtonLabel-lh1yxp-0 xsINH tw-core-button-label">
-                                                                                        <div data-a-target="tw-core-button-label-text"
-                                                                                            class="tw-align-items-center tw-flex tw-flex-grow-0 tw-justify-content-start">
-                                                                                            Enviar</div>
-                                                                                    </div>
-                                                                                </button>
-                                                                                <!-- {{-- Botones extras --}} -->
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="tw-align-content-center tw-align-items-center tw-flex tw-flex-row">
-                                                                    <div class="tw-mg-r-1">
-                                                                        <p class="tw-c-text-alt-2"></p>
-                                                                    </div>
-                                                                    <div class="tw-relative">
-                                                                        <div>
-                                                                            <div class="tw-inline-flex">
-                                                                                <div aria-describedby="3f447c9053d086764c1dc937d3d8bd7e"
-                                                                                    class="tw-relative tw-z-default">
-                                                                                    <!-- Botones extras  -->
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="tw-mg-l-05">
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- <div class="row w-100 d-flex align-items-center ">
+                                          <button
+                                            class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonPrimary-sc-1qn4ixc-1 jeBpig tw-core-button"
+                                            id="btn-msg-movil"
+                                            onclick="registrarChatsM(getParamValue('user'), getParamValue('email'))"
+                                          >
+                                            <div
+                                              class="ScCoreButtonLabel-lh1yxp-0 xsINH tw-core-button-label"
+                                            >
+                                              <div
+                                                data-a-target="tw-core-button-label-text"
+                                                class="tw-align-items-center tw-flex tw-flex-grow-0 tw-justify-content-start"
+                                              >
+                                                Enviar
+                                              </div>
+                                            </div>
+                                          </button>
+                                          <!-- {{-- Botones extras --}} -->
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="tw-align-content-center tw-align-items-center tw-flex tw-flex-row"
+                                  >
+                                    <div class="tw-mg-r-1">
+                                      <p class="tw-c-text-alt-2"></p>
+                                    </div>
+                                    <div class="tw-relative">
+                                      <div>
+                                        <div class="tw-inline-flex">
+                                          <div
+                                            aria-describedby="3f447c9053d086764c1dc937d3d8bd7e"
+                                            class="tw-relative tw-z-default"
+                                          >
+                                            <!-- Botones extras  -->
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="tw-mg-l-05"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- <div class="row w-100 d-flex align-items-center ">
                                                             <div class="col-12 d-flex align-items-center">
 
                                                                 <a class="btn" href="{{ route('evento2') }}">
@@ -563,9 +731,8 @@
                                                             </div>
 
                                                         </div> -->
-
-                                                    </div>
-                                                    <!-- <div
+                            </div>
+                            <!-- <div
                                                         class="chat-room__viewer-card tw-absolute tw-full-height tw-full-width"
                                                         data-a-target="chat-user-card">
                                                         <div
@@ -573,14 +740,17 @@
 
                                                         </div>
                                                     </div>  -->
-                                                </div>
-                                            </section>
-                                            <!-- end form chat -->
-                                        </div>
-                                        <div class="view__StyledPanel-b7rtcq-0 eUTMEg ocultar" id="tab-content-2">
-                                            <div class="container mt-3">
-                                                <div class="row">
-                                                    <!--  <div class="col-12 centrar-f">
+                          </div>
+                        </section>
+                        <!-- end form chat -->
+                      </div>
+                      <div
+                        class="view__StyledPanel-b7rtcq-0 eUTMEg ocultar"
+                        id="tab-content-2"
+                      >
+                        <div class="container mt-3">
+                          <div class="row">
+                            <!--  <div class="col-12 centrar-f">
                                                         <img src="{{ asset('img/player/Seleccion_NNLS2.svg') }}"
                                                             class="img-fluid mb-3" alt="silanes" width="100%">
                                                     </div> 
@@ -596,10 +766,10 @@
                                                             id="lenguage-2"><img src="{{ asset('player/img/2.png') }}"
                                                                 class="img-fluid" alt="boton" width="60%"></a>
                                                     </div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="view__StyledPanel-b7rtcq-0 eUTMEg ocultar" id="tab-content-3">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="view__StyledPanel-b7rtcq-0 eUTMEg ocultar" id="tab-content-3">
                                             <div class="container-fluid mt-3 mb-4">
                                                 <div class="card mt-4 img-question ocultar">
                                                     <h5 class="card-header cl-oscuro text-center">Aún no hay
@@ -679,30 +849,35 @@
                                                 </div>
                                             </div>
                                         </div>  -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Sidebar -->
-                        <div
-                            class="view__SidebarContainer-sc-14hsoh1-2 TYikQ styles__StyledSidebar-sc-18bvhk3-4 PeJGm ocultar-movil">
-                            <div class="overlay"></div>
-                            <!--Header chat-->
-                            <div class="view__StyledSidebarAuthHeader-sc-14hsoh1-4 fLPWZR header"
-                                data-testid="sidebar-auth-header">
-                                <div class="view__ShowProfile-sc-1tziidi-0 jdQDxu">
-                                    <div data-testid="user-username"
-                                        class="view__UsernameWrapper-sc-1tziidi-8 cvVZfM mt-3">
-                                        <p>
-                                            <span class="titleUser">Bienvenido:</span>
-                                            <span class="nameUser" id="nameUserId"></span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="view__SidebarBody-sc-14hsoh1-3 cnqQZy">
-                                <!-- Nav -->
-                                <!-- <div
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Sidebar -->
+              <div
+                class="view__SidebarContainer-sc-14hsoh1-2 TYikQ styles__StyledSidebar-sc-18bvhk3-4 PeJGm ocultar-movil"
+              >
+                <div class="overlay"></div>
+                <!--Header chat-->
+                <div
+                  class="view__StyledSidebarAuthHeader-sc-14hsoh1-4 fLPWZR header"
+                  data-testid="sidebar-auth-header"
+                >
+                  <div class="view__ShowProfile-sc-1tziidi-0 jdQDxu">
+                    <div
+                      data-testid="user-username"
+                      class="view__UsernameWrapper-sc-1tziidi-8 cvVZfM mt-3"
+                    >
+                      <p>
+                        <span class="titleUser">Bienvenido:</span>
+                        <span class="nameUser" id="nameUserId"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="view__SidebarBody-sc-14hsoh1-3 cnqQZy">
+                  <!-- Nav -->
+                  <!-- <div
                                     class="PanelSelector__Container-sc-1bjv9tc-0 khwEis view__StyledPanelSelector-sc-14hsoh1-5 iocjJm"
                                     id="panel-select"><button
                                         class="PanelSelector__PanelButton-sc-1bjv9tc-1 hXrCgS option active"
@@ -721,229 +896,317 @@
                                                     style="font-size: 18px;"></i></span>
                                         </div>
                                     </button></div>  -->
-                                <!-- Termina nav -->
-                                <div class="view__Panels-sc-14hsoh1-6 iQvqjV sidebar-panel-root panel">
-                                    <div class="view__StyledPanel-b7rtcq-0 eUTMEg quitar-espacio" id="tab-p1">
-                                        <!-- Form chat -->
-                                        <section data-test-selector="chat-room-component-layout"
-                                            class="chat-room tw-flex tw-flex-column tw-flex-grow-1 tw-flex-shrink-1 tw-full-width"
-                                            style="height: 100% !important;">
-                                            <div
-                                                class="chat-room__content tw-c-text-base tw-flex tw-flex-column tw-flex-grow-1 tw-flex-nowrap tw-full-height tw-relative">
-
-                                                <div class="tw-hide"></div>
-                                                <div class="chat-list--default font-scale--default tw-flex tw-flex-column tw-flex-grow-1 tw-overflow-hidden"
-                                                    style="z-index: 1;">
-                                                    <div class="tw-flex tw-flex-column tw-flex-grow-1 tw-overflow-hidden"
-                                                        style="position: relative;">
-                                                        <div class="resize-detector">
-                                                            <div class="resize-detector">
-                                                                <div class="resize-detector__grow"
-                                                                    style="width: 100000px; height: 100000px;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="resize-detector">
-                                                                <div class="resize-detector__shrink"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="scrollable-area"
-                                                            data-test-selector="scrollable-area-wrapper"
-                                                            data-a-target="chat-scroller" data-simplebar="init">
-                                                            <div class="simplebar-track vertical"
-                                                                style="visibility: visible;">
-                                                                <div class="simplebar-scrollbar"
-                                                                    style="top: 2px; height: 325px;"></div>
-                                                            </div>
-                                                            <div class="simplebar-track horizontal"
-                                                                style="visibility: hidden;">
-                                                                <div class="simplebar-scrollbar"></div>
-                                                            </div>
-                                                            <div class="simplebar-scroll-content"
-                                                                style="padding-right: 20px; margin-bottom: -20px;">
-                                                                <div class="simplebar-content">
-                                                                    <div class="chat-scrollable-area__message-container tw-flex-grow-1 tw-pd-b-1"
-                                                                        data-test-selector="chat-scrollable-area__message-container"
-                                                                        role="log">
-                                                                        <div class="chat-line__status"
-                                                                            data-a-target="chat-welcome-message">
-                                                                            <span class="bienvenidaChat">Te damos la
-                                                                                bienvenida a la sala de chat</span>
-                                                                        </div>
-                                                                        <div class="___class_+?258___"
-                                                                            id="list-message">
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="chat-room__notifications tw-absolute tw-full-width tw-z-above">
-                                                </div>
-                                                <div class="chat-input tw-block tw-pd-b-1 tw-pd-x-1">
-                                                    <div class="___class_+?261___"></div>
-                                                    <div>
-                                                        <div class="tw-block tw-relative tw-z-default">
-                                                            <div
-                                                                class="chat-input-tray__open bg-input chat-input-tray__open--persistent tw-block tw-border-b tw-border-l tw-border-r tw-border-radius-large tw-border-t tw-c-background-alt tw-elevation-0 tw-left-0 tw-pd-0 tw-relative tw-right-0 tw-z-below">
-                                                                <div class="chat-input-tray__clickable"
-                                                                    data-test-selector="chat-input-tray-click-container">
-                                                                    <div class="___class_+?265___">
-                                                                        <div
-                                                                            class="tw-flex tw-justify-content-between tw-pd-b-05 tw-pd-x-05">
-                                                                            <div
-                                                                                class="common-tray-header__icon tw-mg-05">
-                                                                                <div
-                                                                                    class="chat-restriction-tray-icon tw-c-text-alt-2">
-                                                                                    <figure
-                                                                                        class="ScFigure-sc-1j5mt50-0 laJGEQ tw-svg">
-                                                                                        <svg type="color-fill-current"
-                                                                                            width="18px" height="18px"
-                                                                                            version="1.1"
-                                                                                            viewBox="0 0 20 20" x="0px"
-                                                                                            y="0px"
-                                                                                            class="ScSvg-sc-1j5mt50-1 jLaQtw">
-                                                                                            <g>
-                                                                                                <path
-                                                                                                    fill-rule="evenodd"
-                                                                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 8V6h2v2H9zm0 6V9h2v5H9z"
-                                                                                                    clip-rule="evenodd">
-                                                                                                </path>
-                                                                                            </g>
-                                                                                        </svg>
-                                                                                    </figure>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="tw-align-items-center tw-flex tw-flex-grow-1 tw-mg-x-05">
-                                                                                <p
-                                                                                    class="tw-c-text-alt-2 tw-strong cl-gris">
-                                                                                    Chat
-                                                                                    filtrado</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="___class_+?273___">
-                                                                <div
-                                                                    class="tw-block tw-border-radius-large tw-elevation-0 tw-left-0 tw-pd-0 tw-right-0 tw-z-below">
-                                                                </div>
-                                                                <div class="tw-block tw-border-radius-large tw-pd-0">
-                                                                    <div class="tw-relative">
-                                                                        <div class="chat-input__textarea bg-input">
-                                                                            <div class="font-scale--default"><input
-                                                                                    class="ScInputBase-sc-1wz0osy-0 ScTextArea-sc-1ywwys8-0 dTtjBt tw-border-radius-medium tw-font-size-6 tw-textarea tw-textarea--no-resize"
-                                                                                    a maxlength="500"
-                                                                                    placeholder="Enviar un mensaje"
-                                                                                    rows="1"
-                                                                                    style="padding-right: 3.5rem;"
-                                                                                    id="msg-escritorio"></div>
-                                                                            <div
-                                                                                class="tw-absolute tw-bottom-0 tw-right-0">
-                                                                                <div class="chat-input__input-icons">
-                                                                                    <button
-                                                                                        class="ScCoreButton-sc-1qn4ixc-0 gqSiKD tw-button-icon tw-button-icon--secondary tw-core-button "
-                                                                                        onclick="toggle()"
-                                                                                        id="emoji"><span
-                                                                                            class="tw-button-icon__icon">
-                                                                                            <div
-                                                                                                style="width: 2rem; height: 2rem;">
-                                                                                                <div
-                                                                                                    class="ScIconLayout-sc-1bgeryd-0 kbOjdP tw-icon">
-                                                                                                    <div
-                                                                                                        class="ScAspectRatio-sc-1sw3lwy-1 dNNaBC tw-aspect">
-                                                                                                        <div
-                                                                                                            class="ScAspectSpacer-sc-1sw3lwy-0 gkBhyN">
-                                                                                                        </div><i
-                                                                                                            class="far fa-laugh-beam"
-                                                                                                            style="font-size: 1.6rem;color:#000;"></i>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </span> <span
-                                                                                            class="caret"></span></button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat-input__buttons-container tw-flex tw-justify-content-between tw-mg-t-1"
-                                                            data-test-selector="chat-input-buttons-container"
-                                                            style="direction: rtl;">
-                                                            <div class="tw-flex tw-flex-row">
-                                                                <div class="tw-relative tw-z-default">
-                                                                    <div>
-                                                                        <div data-test-selector="community-points-summary"
-                                                                            class="community-points-summary tw-align-items-center tw-flex tw-full-height">
-                                                                            <div
-                                                                                class="tw-align-items-center tw-flex tw-relative">
-                                                                                <div
-                                                                                    class="tw-absolute tw-left-0 tw-top-0">
-                                                                                </div>
-                                                                                <div class="tw-inline-flex"><button
-                                                                                        class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonText-sc-1qn4ixc-3 kGWcAX tw-core-button">
-                                                                                        <div
-                                                                                            class="ScCoreButtonLabel-lh1yxp-0 xsINH tw-core-button-label">
-                                                                                            <div data-a-target="tw-core-button-label-text"
-                                                                                                class="tw-align-items-center tw-flex tw-flex-grow-0 tw-justify-content-start">
-                                                                                                <div
-                                                                                                    class="tw-align-items-center tw-flex">
-
-
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </button></div>
-                                                                                <div
-                                                                                    class="tw-absolute tw-left-0 tw-top-0">
-                                                                                </div>
-                                                                                <div
-                                                                                    class="tw-relative tw-right-0 tw-z-above">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="tw-full-height tw-relative tw-z-above">
-                                                                                <div class="tw-transition tw-transition--exit-done tw-transition__fade tw-transition__fade--exit-done"
-                                                                                    style="transition-delay: 0ms; transition-duration: 300ms;">
-                                                                                </div>
-
-                                                                            </div>
-                                                                            <button
-                                                                                class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonPrimary-sc-1qn4ixc-1 jeBpig tw-core-button"
-                                                                                id="btn-msg-web"
-                                                                                onclick="registrarChats(getParamValue('user'), getParamValue('email'))">
-                                                                                <div
-                                                                                    class="ScCoreButtonLabel-lh1yxp-0 xsINH tw-core-button-label">
-                                                                                    <div data-a-target="tw-core-button-label-text"
-                                                                                        class="tw-align-items-center tw-flex tw-flex-grow-0 tw-justify-content-start">
-                                                                                        Enviar</div>
-                                                                                </div>
-                                                                            </button>
-                                                                            <!-- <i class="far fa-question-circle"></i>                                                                             -->
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="chat-room__viewer-card tw-absolute tw-full-height tw-full-width"
-                                                    data-a-target="chat-user-card">
-                                                    <div
-                                                        class="tw-full-height tw-full-width tw-relative tw-z-above viewer-card-layer">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <!-- end form chat -->
+                  <!-- Termina nav -->
+                  <div
+                    class="view__Panels-sc-14hsoh1-6 iQvqjV sidebar-panel-root panel"
+                  >
+                    <div
+                      class="view__StyledPanel-b7rtcq-0 eUTMEg quitar-espacio"
+                      id="tab-p1"
+                    >
+                      <!-- Form chat -->
+                      <section
+                        data-test-selector="chat-room-component-layout"
+                        class="chat-room tw-flex tw-flex-column tw-flex-grow-1 tw-flex-shrink-1 tw-full-width"
+                        style="height: 100% !important"
+                      >
+                        <div
+                          class="chat-room__content tw-c-text-base tw-flex tw-flex-column tw-flex-grow-1 tw-flex-nowrap tw-full-height tw-relative"
+                        >
+                          <div class="tw-hide"></div>
+                          <div
+                            class="chat-list--default font-scale--default tw-flex tw-flex-column tw-flex-grow-1 tw-overflow-hidden"
+                            style="z-index: 1"
+                          >
+                            <div
+                              class="tw-flex tw-flex-column tw-flex-grow-1 tw-overflow-hidden"
+                              style="position: relative"
+                            >
+                              <div class="resize-detector">
+                                <div class="resize-detector">
+                                  <div
+                                    class="resize-detector__grow"
+                                    style="width: 100000px; height: 100000px"
+                                  ></div>
+                                </div>
+                                <div class="resize-detector">
+                                  <div class="resize-detector__shrink"></div>
+                                </div>
+                              </div>
+                              <div
+                                class="scrollable-area"
+                                data-test-selector="scrollable-area-wrapper"
+                                data-a-target="chat-scroller"
+                                data-simplebar="init"
+                              >
+                                <div
+                                  class="simplebar-track vertical"
+                                  style="visibility: visible"
+                                >
+                                  <div
+                                    class="simplebar-scrollbar"
+                                    style="top: 2px; height: 325px"
+                                  ></div>
+                                </div>
+                                <div
+                                  class="simplebar-track horizontal"
+                                  style="visibility: hidden"
+                                >
+                                  <div class="simplebar-scrollbar"></div>
+                                </div>
+                                <div
+                                  class="simplebar-scroll-content"
+                                  style="
+                                    padding-right: 20px;
+                                    margin-bottom: -20px;
+                                  "
+                                >
+                                  <div class="simplebar-content">
+                                    <div
+                                      class="chat-scrollable-area__message-container tw-flex-grow-1 tw-pd-b-1"
+                                      data-test-selector="chat-scrollable-area__message-container"
+                                      role="log"
+                                    >
+                                      <div
+                                        class="chat-line__status"
+                                        data-a-target="chat-welcome-message"
+                                      >
+                                        <span class="bienvenidaChat"
+                                          >Te damos la bienvenida a la sala de
+                                          chat</span
+                                        >
+                                      </div>
+                                      <div
+                                        class="___class_+?258___"
+                                        id="list-message"
+                                      ></div>
                                     </div>
-                                    <!-- <div class="view__StyledPanel-b7rtcq-0 eUTMEg ocultar" id="tab-p2">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="chat-room__notifications tw-absolute tw-full-width tw-z-above"
+                          ></div>
+                          <div class="chat-input tw-block tw-pd-b-1 tw-pd-x-1">
+                            <div class="___class_+?261___"></div>
+                            <div>
+                              <div class="tw-block tw-relative tw-z-default">
+                                <div
+                                  class="chat-input-tray__open bg-input chat-input-tray__open--persistent tw-block tw-border-b tw-border-l tw-border-r tw-border-radius-large tw-border-t tw-c-background-alt tw-elevation-0 tw-left-0 tw-pd-0 tw-relative tw-right-0 tw-z-below"
+                                >
+                                  <div
+                                    class="chat-input-tray__clickable"
+                                    data-test-selector="chat-input-tray-click-container"
+                                  >
+                                    <div class="___class_+?265___">
+                                      <div
+                                        class="tw-flex tw-justify-content-between tw-pd-b-05 tw-pd-x-05"
+                                      >
+                                        <div
+                                          class="common-tray-header__icon tw-mg-05"
+                                        >
+                                          <div
+                                            class="chat-restriction-tray-icon tw-c-text-alt-2"
+                                          >
+                                            <figure
+                                              class="ScFigure-sc-1j5mt50-0 laJGEQ tw-svg"
+                                            >
+                                              <svg
+                                                type="color-fill-current"
+                                                width="18px"
+                                                height="18px"
+                                                version="1.1"
+                                                viewBox="0 0 20 20"
+                                                x="0px"
+                                                y="0px"
+                                                class="ScSvg-sc-1j5mt50-1 jLaQtw"
+                                              >
+                                                <g>
+                                                  <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 8V6h2v2H9zm0 6V9h2v5H9z"
+                                                    clip-rule="evenodd"
+                                                  ></path>
+                                                </g>
+                                              </svg>
+                                            </figure>
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="tw-align-items-center tw-flex tw-flex-grow-1 tw-mg-x-05"
+                                        >
+                                          <p
+                                            class="tw-c-text-alt-2 tw-strong cl-gris"
+                                          >
+                                            Chat filtrado
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="___class_+?273___">
+                                  <div
+                                    class="tw-block tw-border-radius-large tw-elevation-0 tw-left-0 tw-pd-0 tw-right-0 tw-z-below"
+                                  ></div>
+                                  <div
+                                    class="tw-block tw-border-radius-large tw-pd-0"
+                                  >
+                                    <div class="tw-relative">
+                                      <div
+                                        class="chat-input__textarea bg-input"
+                                      >
+                                        <div class="font-scale--default">
+                                          <input
+                                            class="ScInputBase-sc-1wz0osy-0 ScTextArea-sc-1ywwys8-0 dTtjBt tw-border-radius-medium tw-font-size-6 tw-textarea tw-textarea--no-resize"
+                                            a
+                                            maxlength="500"
+                                            placeholder="Enviar un mensaje"
+                                            rows="1"
+                                            style="padding-right: 3.5rem"
+                                            id="msg-escritorio"
+                                          />
+                                        </div>
+                                        <div
+                                          class="tw-absolute tw-bottom-0 tw-right-0"
+                                        >
+                                          <div class="chat-input__input-icons">
+                                            <button
+                                              class="ScCoreButton-sc-1qn4ixc-0 gqSiKD tw-button-icon tw-button-icon--secondary tw-core-button"
+                                              onclick="toggle()"
+                                              id="emoji"
+                                            >
+                                              <span
+                                                class="tw-button-icon__icon"
+                                              >
+                                                <div
+                                                  style="
+                                                    width: 2rem;
+                                                    height: 2rem;
+                                                  "
+                                                >
+                                                  <div
+                                                    class="ScIconLayout-sc-1bgeryd-0 kbOjdP tw-icon"
+                                                  >
+                                                    <div
+                                                      class="ScAspectRatio-sc-1sw3lwy-1 dNNaBC tw-aspect"
+                                                    >
+                                                      <div
+                                                        class="ScAspectSpacer-sc-1sw3lwy-0 gkBhyN"
+                                                      ></div>
+                                                      <i
+                                                        class="far fa-laugh-beam"
+                                                        style="
+                                                          font-size: 1.6rem;
+                                                          color: #000;
+                                                        "
+                                                      ></i>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </span>
+                                              <span class="caret"></span>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="chat-input__buttons-container tw-flex tw-justify-content-between tw-mg-t-1"
+                                data-test-selector="chat-input-buttons-container"
+                                style="direction: rtl"
+                              >
+                                <div class="tw-flex tw-flex-row">
+                                  <div class="tw-relative tw-z-default">
+                                    <div>
+                                      <div
+                                        data-test-selector="community-points-summary"
+                                        class="community-points-summary tw-align-items-center tw-flex tw-full-height"
+                                      >
+                                        <div
+                                          class="tw-align-items-center tw-flex tw-relative"
+                                        >
+                                          <div
+                                            class="tw-absolute tw-left-0 tw-top-0"
+                                          ></div>
+                                          <div class="tw-inline-flex">
+                                            <button
+                                              class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonText-sc-1qn4ixc-3 kGWcAX tw-core-button"
+                                            >
+                                              <div
+                                                class="ScCoreButtonLabel-lh1yxp-0 xsINH tw-core-button-label"
+                                              >
+                                                <div
+                                                  data-a-target="tw-core-button-label-text"
+                                                  class="tw-align-items-center tw-flex tw-flex-grow-0 tw-justify-content-start"
+                                                >
+                                                  <div
+                                                    class="tw-align-items-center tw-flex"
+                                                  ></div>
+                                                </div>
+                                              </div>
+                                            </button>
+                                          </div>
+                                          <div
+                                            class="tw-absolute tw-left-0 tw-top-0"
+                                          ></div>
+                                          <div
+                                            class="tw-relative tw-right-0 tw-z-above"
+                                          ></div>
+                                        </div>
+                                        <div
+                                          class="tw-full-height tw-relative tw-z-above"
+                                        >
+                                          <div
+                                            class="tw-transition tw-transition--exit-done tw-transition__fade tw-transition__fade--exit-done"
+                                            style="
+                                              transition-delay: 0ms;
+                                              transition-duration: 300ms;
+                                            "
+                                          ></div>
+                                        </div>
+                                        <button
+                                          class="ScCoreButton-sc-1qn4ixc-0 ScCoreButtonPrimary-sc-1qn4ixc-1 jeBpig tw-core-button"
+                                          id="btn-msg-web"
+                                          onclick="registrarChats(getParamValue('user'), getParamValue('email'))"
+                                        >
+                                          <div
+                                            class="ScCoreButtonLabel-lh1yxp-0 xsINH tw-core-button-label"
+                                          >
+                                            <div
+                                              data-a-target="tw-core-button-label-text"
+                                              class="tw-align-items-center tw-flex tw-flex-grow-0 tw-justify-content-start"
+                                            >
+                                              Enviar
+                                            </div>
+                                          </div>
+                                        </button>
+                                        <!-- <i class="far fa-question-circle"></i>                                                                             -->
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="chat-room__viewer-card tw-absolute tw-full-height tw-full-width"
+                            data-a-target="chat-user-card"
+                          >
+                            <div
+                              class="tw-full-height tw-full-width tw-relative tw-z-above viewer-card-layer"
+                            ></div>
+                          </div>
+                        </div>
+                      </section>
+                      <!-- end form chat -->
+                    </div>
+                    <!-- <div class="view__StyledPanel-b7rtcq-0 eUTMEg ocultar" id="tab-p2">
                                         <div class="container-fluid mb-4">
                                             <div class="card mt-4 img-question ocultar">
                                                 <h5 class="card-header cl-oscuro text-center">Aún no hay Preguntas
@@ -1021,57 +1284,57 @@
                                             </div>
                                         </div>
                                     </div>  -->
-                                    <!--2  -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Acomodar -->
-                        <div class="view__EditSheetContainer-sc-14hsoh1-11 gqPdox ocultar-movil">
-                            <div class="view__ExitEditSidebar-sc-14hsoh1-12 bLpOYa"></div>
-                        </div>
-                    </div>
+                    <!--2  -->
+                  </div>
                 </div>
+              </div>
+
+              <!-- Acomodar -->
+              <div
+                class="view__EditSheetContainer-sc-14hsoh1-11 gqPdox ocultar-movil"
+              >
+                <div class="view__ExitEditSidebar-sc-14hsoh1-12 bLpOYa"></div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
-
     <script>
-        const user = document.querySelector('#nameUserId');
-        user.innerHTML = getParamValue('user');
+      const user = document.querySelector('#nameUserId');
+      user.innerHTML = getParamValue('user');
 
-        const miStorageGlobal = window.localStorage;
-        // miStorageGlobal.removeItem('usuario_silanes');
-        if (!miStorageGlobal.usuario_silanes) {
-            db.collection('col-sala')
-                .doc('test')
-                .collection('col-usuarios').add({
-                    name: "user",
-                })
-                .then((docRef) => {
-                    miStorageGlobal.setItem('usuario_silanes', 'user');
-                })
-                .catch((error) => {
-
-                });
-        }
+      const miStorageGlobal = window.localStorage;
+      // miStorageGlobal.removeItem('usuario_silanes');
+      if (!miStorageGlobal.usuario_silanes) {
+        db.collection('col-sala')
+          .doc('test')
+          .collection('col-usuarios')
+          .add({
+            name: 'user',
+          })
+          .then((docRef) => {
+            miStorageGlobal.setItem('usuario_silanes', 'user');
+          })
+          .catch((error) => {});
+      }
     </script>
 
     <!-- end player -->
 
     <!-- Modales  --->
-    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}" />
     <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
-    <script src="./js/bootstrap.bundle.min.js?ver=1.0.6"></script>
+    <script src="./js/bootstrap.bundle.min.js?ver=1.0.7"></script>
     <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
-    <!--<script type="text/javascript" src="js/validarRuta.js?ver=1.0.6"></script>-->
+    <!--<script type="text/javascript" src="js/validarRuta.js?ver=1.0.7"></script>-->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script type="module" src="https://unpkg.com/emoji-picker-element@1"></script>
-    <script type="text/javascript" src="./js/chat.js?ver=1.0.6"></script>
-    <!-- <script type="text/javascript" src="./js/loading.js?ver=1.0.6"></script>  -->
-
-
-</body>
-
+    <script
+      type="module"
+      src="https://unpkg.com/emoji-picker-element@1"
+    ></script>
+    <script type="text/javascript" src="./js/chat.js?ver=1.0.7"></script>
+    <!-- <script type="text/javascript" src="./js/loading.js?ver=1.0.7"></script>  -->
+  </body>
 </html>

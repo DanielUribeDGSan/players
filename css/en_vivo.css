@@ -446,7 +446,8 @@ body {
 /* Header */
 .jBTXUf {
   /* height: 64px; */
-  height: 69px;
+  /* height: 69px;  la chida*/
+  height: 86px;
   /*margin: 0px 0px 24px 0px;*/
   margin: 0px 0px 0px 0px;
   flex-shrink: 0;
