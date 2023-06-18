@@ -76,10 +76,10 @@ scene.add(dirLight);
 dirLight.shadow.mapSize.width = 2048;
 dirLight.shadow.mapSize.height = 2048;
 var d = 500;
-dirLight.shadow.camera.left = - d;
+dirLight.shadow.camera.left = -d;
 dirLight.shadow.camera.right = d;
 dirLight.shadow.camera.top = d;
-dirLight.shadow.camera.bottom = - d;
+dirLight.shadow.camera.bottom = -d;
 
 // var helper = new THREE.CameraHelper( dirLight.shadow.camera );
 // var helper = new THREE.CameraHelper( camera );
@@ -92,7 +92,7 @@ scene.add(backLight)
 
 const laneTypes = ['car', 'truck', 'forest'];
 const laneSpeeds = [2, 2.5, 3];
-const vechicleColors = [0xa52523, 0xbdb638, 0x78b14b];
+const vechicleColors = [0xf2c43e, 0xB60666, 0x5e61b5];
 const threeHeights = [20, 45, 60];
 
 const initaliseValues = () => {
@@ -151,7 +151,7 @@ function Wheel() {
     return wheel;
 }
 
-function Car() {
+function Car(direction) {
     const car = new THREE.Group();
     const color = vechicleColors[Math.floor(Math.random() * vechicleColors.length)];
 
@@ -165,8 +165,7 @@ function Car() {
     car.add(main)
 
     const cabin = new THREE.Mesh(
-        new THREE.BoxBufferGeometry(33 * zoom, 24 * zoom, 12 * zoom),
-        [
+        new THREE.BoxBufferGeometry(33 * zoom, 24 * zoom, 12 * zoom), [
             new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true, map: carBackTexture }),
             new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true, map: carFrontTexture }),
             new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true, map: carRightSideTexture }),
@@ -192,13 +191,48 @@ function Car() {
     car.castShadow = true;
     car.receiveShadow = false;
 
+    const logoGeometry = new THREE.BoxBufferGeometry(33 * zoom, 24 * zoom, 12 * zoom);
+    const logoTexture = new THREE.TextureLoader().load('../crossy_road/img/danono-logo.jpeg');
+    logoTexture.wrapS = THREE.RepeatWrapping;
+    logoTexture.wrapT = THREE.RepeatWrapping;
+    logoTexture.minFilter = THREE.LinearFilter;
+
+    const logoMaterials = [
+
+
+        new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true }), // back
+
+
+        new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true }), // front
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true, }), // right side (logo)
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true, }), // left side (logo)
+
+
+        new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true }), // top
+        new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true, map: logoTexture }) // bottom
+    ];
+
+
+    const logoMesh = new THREE.Mesh(logoGeometry, logoMaterials);
+
+    console.log(direction);
+    logoMesh.position.x = 6 * zoom;
+    logoMesh.position.z = 25.5 * zoom;
+    logoMesh.castShadow = true;
+    logoMesh.receiveShadow = true;
+    logoMesh.rotation.y = Math.PI;
+    car.add(logoMesh);
+
     return car;
 }
 
-function Truck() {
+function Truck(direction) {
     const truck = new THREE.Group();
     const color = vechicleColors[Math.floor(Math.random() * vechicleColors.length)];
-
 
     const base = new THREE.Mesh(
         new THREE.BoxBufferGeometry(100 * zoom, 25 * zoom, 5 * zoom),
@@ -218,8 +252,7 @@ function Truck() {
     truck.add(cargo)
 
     const cabin = new THREE.Mesh(
-        new THREE.BoxBufferGeometry(25 * zoom, 30 * zoom, 30 * zoom),
-        [
+        new THREE.BoxBufferGeometry(25 * zoom, 30 * zoom, 30 * zoom), [
             new THREE.MeshPhongMaterial({ color, flatShading: true }), // back
             new THREE.MeshPhongMaterial({ color, flatShading: true, map: truckFrontTexture }),
             new THREE.MeshPhongMaterial({ color, flatShading: true, map: truckRightSideTexture }),
@@ -246,6 +279,45 @@ function Truck() {
     backWheel.position.x = 30 * zoom;
     truck.add(backWheel);
 
+    const logoGeometry = new THREE.BoxBufferGeometry(75 * zoom, 35 * zoom, 40 * zoom);
+    const logoTexture = new THREE.TextureLoader().load('../crossy_road/img/dadone-gif.gif');
+    logoTexture.wrapS = THREE.RepeatWrapping;
+    logoTexture.wrapT = THREE.RepeatWrapping;
+    logoTexture.minFilter = THREE.LinearFilter;
+
+    const logoTexture2 = new THREE.TextureLoader().load('../crossy_road/img/danono-logo.jpeg');
+    logoTexture2.wrapS = THREE.RepeatWrapping;
+    logoTexture2.wrapT = THREE.RepeatWrapping;
+    logoTexture2.minFilter = THREE.LinearFilter;
+
+    const logoMaterials = [
+
+
+        new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true }), // back
+
+
+        new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true }), // front
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true, map: logoTexture }), // right side (logo)
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true, map: logoTexture }), // left side (logo)
+
+
+        new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true, map: logoTexture2 }), // top
+        new THREE.MeshPhongMaterial({ color: 0xcccccc, flatShading: true, map: logoTexture2 }) // bottom
+    ];
+
+    const logoMesh = new THREE.Mesh(logoGeometry, logoMaterials);
+
+    logoMesh.position.x = 15 * zoom;
+    logoMesh.position.z = 30 * zoom;
+    logoMesh.castShadow = true;
+    logoMesh.receiveShadow = true;
+    logoMesh.rotation.y = direction ? null : Math.PI;
+    truck.add(logoMesh);
+
     return truck;
 }
 
@@ -254,7 +326,7 @@ function Three() {
 
     const trunk = new THREE.Mesh(
         new THREE.BoxBufferGeometry(15 * zoom, 15 * zoom, 20 * zoom),
-        new THREE.MeshPhongMaterial({ color: 0x4d2926, flatShading: true })
+        new THREE.MeshPhongMaterial({ color: 0x4e3a3b, flatShading: true })
     );
     trunk.position.z = 10 * zoom;
     trunk.castShadow = true;
@@ -265,7 +337,7 @@ function Three() {
 
     const crown = new THREE.Mesh(
         new THREE.BoxBufferGeometry(30 * zoom, 30 * zoom, height * zoom),
-        new THREE.MeshLambertMaterial({ color: 0x7aa21d, flatShading: true })
+        new THREE.MeshLambertMaterial({ color: 0x429867, flatShading: true })
     );
     crown.position.z = (height / 2 + 20) * zoom;
     crown.castShadow = true;
@@ -280,7 +352,7 @@ function Chicken() {
 
     const body = new THREE.Mesh(
         new THREE.BoxBufferGeometry(chickenSize * zoom, chickenSize * zoom, 20 * zoom),
-        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true })
+        new THREE.MeshPhongMaterial({ color: 0x5e61b5, flatShading: true })
     );
     body.position.z = 10 * zoom;
     body.castShadow = true;
@@ -295,6 +367,39 @@ function Chicken() {
     rowel.castShadow = true;
     rowel.receiveShadow = false;
     chicken.add(rowel);
+
+    const logoGeometry = new THREE.BoxBufferGeometry(chickenSize * zoom, chickenSize * zoom, 20 * zoom);
+    const logoTexture = new THREE.TextureLoader().load('../crossy_road/img/danono-logo.jpeg');
+    logoTexture.wrapS = THREE.RepeatWrapping;
+    logoTexture.wrapT = THREE.RepeatWrapping;
+    logoTexture.minFilter = THREE.LinearFilter;
+    const logoMaterials = [
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // back
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true, map: logoTexture }), // right side (logo)
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true, map: logoTexture }), // left side (logo)
+
+
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // top
+        new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }) // bottom
+    ];
+
+    const logoMesh = new THREE.Mesh(logoGeometry, logoMaterials);
+
+
+    logoMesh.position.z = 10 * zoom;
+    logoMesh.castShadow = true;
+    logoMesh.receiveShadow = true;
+    // logoMesh.rotation.y = direction ? null : Math.PI;
+    chicken.add(logoMesh);
 
     return chicken;
 }
@@ -312,7 +417,7 @@ function Road() {
     road.add(middle);
 
     const left = createSection(0x393D49);
-    left.position.x = - boardWidth * zoom;
+    left.position.x = -boardWidth * zoom;
     road.add(left);
 
     const right = createSection(0x393D49);
@@ -330,15 +435,15 @@ function Grass() {
         new THREE.MeshPhongMaterial({ color })
     );
 
-    const middle = createSection(0xbaf455);
+    const middle = createSection(0xf2c43e);
     middle.receiveShadow = true;
     grass.add(middle);
 
-    const left = createSection(0x99C846);
-    left.position.x = - boardWidth * zoom;
+    const left = createSection(0x5e61b5);
+    left.position.x = -boardWidth * zoom;
     grass.add(left);
 
-    const right = createSection(0x99C846);
+    const right = createSection(0x5e61b5);
     right.position.x = boardWidth * zoom;
     grass.add(right);
 
@@ -351,70 +456,74 @@ function Lane(index) {
     this.type = index <= 0 ? 'field' : laneTypes[Math.floor(Math.random() * laneTypes.length)];
 
     switch (this.type) {
-        case 'field': {
-            this.type = 'field';
-            this.mesh = new Grass();
-            break;
-        }
-        case 'forest': {
-            this.mesh = new Grass();
+        case 'field':
+            {
+                this.type = 'field';
+                this.mesh = new Grass();
+                break;
+            }
+        case 'forest':
+            {
+                this.mesh = new Grass();
 
-            this.occupiedPositions = new Set();
-            this.threes = [1, 2, 3, 4].map(() => {
-                const three = new Three();
-                let position;
-                do {
-                    position = Math.floor(Math.random() * columns);
-                } while (this.occupiedPositions.has(position))
-                this.occupiedPositions.add(position);
-                three.position.x = (position * positionWidth + positionWidth / 2) * zoom - boardWidth * zoom / 2;
-                this.mesh.add(three);
-                return three;
-            })
-            break;
-        }
-        case 'car': {
-            this.mesh = new Road();
-            this.direction = Math.random() >= 0.5;
+                this.occupiedPositions = new Set();
+                this.threes = [1, 2, 3, 4].map(() => {
+                    const three = new Three();
+                    let position;
+                    do {
+                        position = Math.floor(Math.random() * columns);
+                    } while (this.occupiedPositions.has(position))
+                    this.occupiedPositions.add(position);
+                    three.position.x = (position * positionWidth + positionWidth / 2) * zoom - boardWidth * zoom / 2;
+                    this.mesh.add(three);
+                    return three;
+                })
+                break;
+            }
+        case 'car':
+            {
+                this.mesh = new Road();
+                this.direction = Math.random() >= 0.5;
 
-            const occupiedPositions = new Set();
-            this.vechicles = [1, 2, 3].map(() => {
-                const vechicle = new Car();
-                let position;
-                do {
-                    position = Math.floor(Math.random() * columns / 2);
-                } while (occupiedPositions.has(position))
-                occupiedPositions.add(position);
-                vechicle.position.x = (position * positionWidth * 2 + positionWidth / 2) * zoom - boardWidth * zoom / 2;
-                if (!this.direction) vechicle.rotation.z = Math.PI;
-                this.mesh.add(vechicle);
-                return vechicle;
-            })
+                const occupiedPositions = new Set();
+                this.vechicles = [1, 2, 3].map(() => {
+                    const vechicle = new Car(this.direction);
+                    let position;
+                    do {
+                        position = Math.floor(Math.random() * columns / 2);
+                    } while (occupiedPositions.has(position))
+                    occupiedPositions.add(position);
+                    vechicle.position.x = (position * positionWidth * 2 + positionWidth / 2) * zoom - boardWidth * zoom / 2;
+                    if (!this.direction) vechicle.rotation.z = Math.PI;
+                    this.mesh.add(vechicle);
+                    return vechicle;
+                })
 
-            this.speed = laneSpeeds[Math.floor(Math.random() * laneSpeeds.length)];
-            break;
-        }
-        case 'truck': {
-            this.mesh = new Road();
-            this.direction = Math.random() >= 0.5;
+                this.speed = laneSpeeds[Math.floor(Math.random() * laneSpeeds.length)];
+                break;
+            }
+        case 'truck':
+            {
+                this.mesh = new Road();
+                this.direction = Math.random() >= 0.5;
 
-            const occupiedPositions = new Set();
-            this.vechicles = [1, 2].map(() => {
-                const vechicle = new Truck();
-                let position;
-                do {
-                    position = Math.floor(Math.random() * columns / 3);
-                } while (occupiedPositions.has(position))
-                occupiedPositions.add(position);
-                vechicle.position.x = (position * positionWidth * 3 + positionWidth / 2) * zoom - boardWidth * zoom / 2;
-                if (!this.direction) vechicle.rotation.z = Math.PI;
-                this.mesh.add(vechicle);
-                return vechicle;
-            })
+                const occupiedPositions = new Set();
+                this.vechicles = [1, 2].map(() => {
+                    const vechicle = new Truck(this.direction);
+                    let position;
+                    do {
+                        position = Math.floor(Math.random() * columns / 3);
+                    } while (occupiedPositions.has(position))
+                    occupiedPositions.add(position);
+                    vechicle.position.x = (position * positionWidth * 3 + positionWidth / 2) * zoom - boardWidth * zoom / 2;
+                    if (!this.direction) vechicle.rotation.z = Math.PI;
+                    this.mesh.add(vechicle);
+                    return vechicle;
+                })
 
-            this.speed = laneSpeeds[Math.floor(Math.random() * laneSpeeds.length)];
-            break;
-        }
+                this.speed = laneSpeeds[Math.floor(Math.random() * laneSpeeds.length)];
+                break;
+            }
     }
 }
 
@@ -437,16 +546,13 @@ window.addEventListener("keydown", event => {
     if (event.keyCode == '38') {
         // up arrow
         move('forward');
-    }
-    else if (event.keyCode == '40') {
+    } else if (event.keyCode == '40') {
         // down arrow
         move('backward');
-    }
-    else if (event.keyCode == '37') {
+    } else if (event.keyCode == '37') {
         // left arrow
         move('left');
-    }
-    else if (event.keyCode == '39') {
+    } else if (event.keyCode == '39') {
         // right arrow
         move('right');
     }
@@ -464,18 +570,15 @@ function move(direction) {
         if (lanes[finalPositions.lane + 1].type === 'forest' && lanes[finalPositions.lane + 1].occupiedPositions.has(finalPositions.column)) return;
         if (!stepStartTimestamp) startMoving = true;
         addLane();
-    }
-    else if (direction === 'backward') {
+    } else if (direction === 'backward') {
         if (finalPositions.lane === 0) return;
         if (lanes[finalPositions.lane - 1].type === 'forest' && lanes[finalPositions.lane - 1].occupiedPositions.has(finalPositions.column)) return;
         if (!stepStartTimestamp) startMoving = true;
-    }
-    else if (direction === 'left') {
+    } else if (direction === 'left') {
         if (finalPositions.column === 0) return;
         if (lanes[finalPositions.lane].type === 'forest' && lanes[finalPositions.lane].occupiedPositions.has(finalPositions.column - 1)) return;
         if (!stepStartTimestamp) startMoving = true;
-    }
-    else if (direction === 'right') {
+    } else if (direction === 'right') {
         if (finalPositions.column === columns - 1) return;
         if (lanes[finalPositions.lane].type === 'forest' && lanes[finalPositions.lane].occupiedPositions.has(finalPositions.column + 1)) return;
         if (!stepStartTimestamp) startMoving = true;
@@ -515,63 +618,71 @@ function animate(timestamp) {
         const moveDeltaDistance = Math.min(moveDeltaTime / stepTime, 1) * positionWidth * zoom;
         const jumpDeltaDistance = Math.sin(Math.min(moveDeltaTime / stepTime, 1) * Math.PI) * 8 * zoom;
         switch (moves[0]) {
-            case 'forward': {
-                const positionY = currentLane * positionWidth * zoom + moveDeltaDistance;
-                camera.position.y = initialCameraPositionY + positionY;
-                dirLight.position.y = initialDirLightPositionY + positionY;
-                chicken.position.y = positionY; // initial chicken position is 0
+            case 'forward':
+                {
+                    const positionY = currentLane * positionWidth * zoom + moveDeltaDistance;
+                    camera.position.y = initialCameraPositionY + positionY;
+                    dirLight.position.y = initialDirLightPositionY + positionY;
+                    chicken.position.y = positionY; // initial chicken position is 0
 
-                chicken.position.z = jumpDeltaDistance;
-                break;
-            }
-            case 'backward': {
-                positionY = currentLane * positionWidth * zoom - moveDeltaDistance
-                camera.position.y = initialCameraPositionY + positionY;
-                dirLight.position.y = initialDirLightPositionY + positionY;
-                chicken.position.y = positionY;
+                    chicken.position.z = jumpDeltaDistance;
+                    break;
+                }
+            case 'backward':
+                {
+                    positionY = currentLane * positionWidth * zoom - moveDeltaDistance
+                    camera.position.y = initialCameraPositionY + positionY;
+                    dirLight.position.y = initialDirLightPositionY + positionY;
+                    chicken.position.y = positionY;
 
-                chicken.position.z = jumpDeltaDistance;
-                break;
-            }
-            case 'left': {
-                const positionX = (currentColumn * positionWidth + positionWidth / 2) * zoom - boardWidth * zoom / 2 - moveDeltaDistance;
-                camera.position.x = initialCameraPositionX + positionX;
-                dirLight.position.x = initialDirLightPositionX + positionX;
-                chicken.position.x = positionX; // initial chicken position is 0
-                chicken.position.z = jumpDeltaDistance;
-                break;
-            }
-            case 'right': {
-                const positionX = (currentColumn * positionWidth + positionWidth / 2) * zoom - boardWidth * zoom / 2 + moveDeltaDistance;
-                camera.position.x = initialCameraPositionX + positionX;
-                dirLight.position.x = initialDirLightPositionX + positionX;
-                chicken.position.x = positionX;
+                    chicken.position.z = jumpDeltaDistance;
+                    break;
+                }
+            case 'left':
+                {
+                    const positionX = (currentColumn * positionWidth + positionWidth / 2) * zoom - boardWidth * zoom / 2 - moveDeltaDistance;
+                    camera.position.x = initialCameraPositionX + positionX;
+                    dirLight.position.x = initialDirLightPositionX + positionX;
+                    chicken.position.x = positionX; // initial chicken position is 0
+                    chicken.position.z = jumpDeltaDistance;
+                    break;
+                }
+            case 'right':
+                {
+                    const positionX = (currentColumn * positionWidth + positionWidth / 2) * zoom - boardWidth * zoom / 2 + moveDeltaDistance;
+                    camera.position.x = initialCameraPositionX + positionX;
+                    dirLight.position.x = initialDirLightPositionX + positionX;
+                    chicken.position.x = positionX;
 
-                chicken.position.z = jumpDeltaDistance;
-                break;
-            }
+                    chicken.position.z = jumpDeltaDistance;
+                    break;
+                }
         }
         // Once a step has ended
         if (moveDeltaTime > stepTime) {
             switch (moves[0]) {
-                case 'forward': {
-                    currentLane++;
-                    counterDOM.innerHTML = currentLane;
-                    break;
-                }
-                case 'backward': {
-                    currentLane--;
-                    counterDOM.innerHTML = currentLane;
-                    break;
-                }
-                case 'left': {
-                    currentColumn--;
-                    break;
-                }
-                case 'right': {
-                    currentColumn++;
-                    break;
-                }
+                case 'forward':
+                    {
+                        currentLane++;
+                        counterDOM.innerHTML = currentLane;
+                        break;
+                    }
+                case 'backward':
+                    {
+                        currentLane--;
+                        counterDOM.innerHTML = currentLane;
+                        break;
+                    }
+                case 'left':
+                    {
+                        currentColumn--;
+                        break;
+                    }
+                case 'right':
+                    {
+                        currentColumn++;
+                        break;
+                    }
             }
             moves.shift();
             // If more steps are to be taken then restart counter otherwise stop stepping
@@ -628,7 +739,7 @@ function animate(timestamp) {
 
         return new Promise((resolve, reject) => {
             db.collection('col-crossy-road').doc(game.email).set(game)
-                .then(function (docRef) {
+                .then(function(docRef) {
                     resolve(game)
                     Swal.fire({
                         icon: 'success',
@@ -637,7 +748,7 @@ function animate(timestamp) {
                         confirmButtonText: 'Aceptar',
                     });
                 })
-                .catch(function (error) {
+                .catch(function(error) {
                     reject(error)
                 })
         });
