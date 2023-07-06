@@ -283,6 +283,7 @@ class Game {
             return this.endGame();
         }
         this.scoreContainer.innerHTML = String(this.blocks.length - 1);
+        console.log('score');
         console.log(String(this.blocks.length - 1));
         let newKidOnTheBlock = new Block(lastBlock);
         this.newBlocks.add(newKidOnTheBlock.mesh);

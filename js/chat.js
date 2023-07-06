@@ -35,7 +35,7 @@ const scrollBottom = () => {
 
 document.getElementsByClassName('scrollable-area')[0].addEventListener(
     'scroll',
-    function () {
+    function() {
         let scrollTop = document.getElementsByClassName('scrollable-area')[0].scrollTop;
         const scrollHeight = document.getElementsByClassName('scrollable-area')[0].scrollHeight; // added
         const offsetHeight = document.getElementsByClassName('scrollable-area')[0].offsetHeight;
@@ -70,16 +70,16 @@ const enviarMensajeWeb = () => {
 }
 
 if (screen.width > 768) {
-    $(document).ready(function () {
-        $("body").keyup(function (e) {
+    $(document).ready(function() {
+        $("body").keyup(function(e) {
             if (e.keyCode == 13) {
                 $("#btn-msg-web").trigger("click");
             }
         });
     });
 } else {
-    $(document).ready(function () {
-        $("body").keyup(function (e) {
+    $(document).ready(function() {
+        $("body").keyup(function(e) {
             if (e.keyCode == 13) {
                 $("#btn-msg-movil").trigger("click");
             }
@@ -200,7 +200,7 @@ mostrarChats();
 // registrar chats
 function urlify(text) {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
-    return text.replace(urlRegex, function (url) {
+    return text.replace(urlRegex, function(url) {
         return '<a target="_blank" href="' + url + '" style="color:#ca9e67;text-decoration: underline !important;">' + url + '</a>';
     })
 }
@@ -265,7 +265,7 @@ function registrarChats(name, email) {
         db.collection('col-sala')
             .doc(colDocument)
             .collection('col-mensajes').orderBy('id', 'desc').limit(1)
-            .get().then(function (querySnapshot) {
+            .get().then(function(querySnapshot) {
                 querySnapshot.forEach((doc) => {
                     db.collection('col-sala')
                         .doc(colDocument)
@@ -280,7 +280,7 @@ function registrarChats(name, email) {
                             day: 1,
 
                         })
-                        .then(function (docRef) {
+                        .then(function(docRef) {
                             const validacion = $(".tooltip").hasClass("shown");
                             if (validacion) {
                                 toggle();
@@ -299,7 +299,7 @@ function registrarChats(name, email) {
                             esMiMensaje = true;
                             return null;
                         })
-                        .catch(function (error) {
+                        .catch(function(error) {
                             reject(error)
                         })
                 });
@@ -378,7 +378,7 @@ function registrarChatsM(name, email) {
         db.collection('col-sala')
             .doc(colDocument)
             .collection('col-mensajes').orderBy('id', 'desc').limit(1)
-            .get().then(function (querySnapshot) {
+            .get().then(function(querySnapshot) {
                 querySnapshot.forEach((doc) => {
                     db.collection('col-sala')
                         .doc(colDocument)
@@ -393,7 +393,7 @@ function registrarChatsM(name, email) {
                             day: 1,
 
                         })
-                        .then(function (docRef) {
+                        .then(function(docRef) {
                             const validacion = $(".tooltip").hasClass("shown");
                             if (validacion) {
                                 toggle();
@@ -412,7 +412,7 @@ function registrarChatsM(name, email) {
                             esMiMensaje = true;
                             return null;
                         })
-                        .catch(function (error) {
+                        .catch(function(error) {
                             reject(error)
                         })
                 });
@@ -423,7 +423,7 @@ function registrarChatsM(name, email) {
 
 }
 
-$(".scrollable-area").scroll(function (event) {
+$(".scrollable-area").scroll(function(event) {
     var scrollTop = $(".scrollable-area").scrollTop();
     scroll = parseInt(scrollTop.toFixed(0)) + 281;
 });
@@ -441,7 +441,7 @@ var notification = new Notif({
 
 
 
-$(".scrollable-area").scroll(function (event) {
+$(".scrollable-area").scroll(function(event) {
     var scrollTop = $(".scrollable-area").scrollTop();
     scroll = parseInt(scrollTop.toFixed(0)) + 281;
 });
@@ -481,23 +481,23 @@ function Notif(option) {
 
 
     // Methods
-    el.reset = function () {
+    el.reset = function() {
         el.message.empty();
         el.self.removeClass(el.classNames);
     }
-    el.show = function (msg, type) {
+    el.show = function(msg, type) {
         $(".toast-message").removeClass("ocultar");
         el.reset();
         el.message.text(msg);
         el.self.addClass(type);
 
         if (el.autoClose) {
-            setTimeout(function () {
+            setTimeout(function() {
                 el.hide();
             }, el.autoCloseTimeout);
         }
     }
-    el.hide = function () {
+    el.hide = function() {
         el.reset();
         $(".toast-message").addClass("ocultar");
 
@@ -527,7 +527,7 @@ const validarTab = () => {
 
 
 
-$(document).ready(function () {
+$(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
 
 });

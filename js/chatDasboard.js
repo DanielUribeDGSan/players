@@ -2,7 +2,7 @@ const numRender = 50;
 const memoria = 100;
 var chastArr = [];
 
-var colDocument = 'test';
+var colDocument = 'danone';
 
 function renderMensajes() {
     let ultimosChats = [];
@@ -122,14 +122,14 @@ function aprobar(id) {
             status: "aprobado",
             fecha: fecha,
         })
-        .then(function () {
+        .then(function() {
             // $("#aprobado-scroll").animate({
             //     scrollTop: $("#aprobado-scroll").get(0).scrollHeight,
             // },
             //     1500
             // );
         })
-        .catch(function (error) { });
+        .catch(function(error) {});
 }
 
 function denegar(id) {
@@ -145,8 +145,8 @@ function denegar(id) {
             status: "denegado",
             fecha: fecha,
         })
-        .then(function () { })
-        .catch(function (error) { });
+        .then(function() {})
+        .catch(function(error) {});
 }
 
 function eliminarMensaje(id) {
@@ -166,8 +166,8 @@ function eliminarMensaje(id) {
                 .collection("col-mensajes")
                 .doc(id)
                 .delete()
-                .then(function () { })
-                .catch(function (error) { });
+                .then(function() {})
+                .catch(function(error) {});
         }
     });
 }
@@ -176,7 +176,7 @@ function mostrarUsuarios() {
     db.collection("col-sala")
         .doc(colDocument)
         .collection("col-usuarios")
-        .onSnapshot(function (querySnapshot) {
+        .onSnapshot(function(querySnapshot) {
             document.getElementById("totalUsuarios").innerHTML =
                 querySnapshot.docs.length;
         });
