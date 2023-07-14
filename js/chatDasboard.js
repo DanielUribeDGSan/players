@@ -44,7 +44,7 @@ function renderMensajes() {
 function mostrarChatsFiltrados() {
     db.collection('col-sala')
         .doc(colDocument)
-        .collection('col-mensajes')
+        .collection('col-mensajes2')
         .orderBy('fecha').where("status", "==", "aprobado")
         .onSnapshot((querySnapshot) => {
             $('#list-filter').html('');
@@ -72,7 +72,7 @@ mostrarChatsFiltrados();
 function mostrarChats() {
     db.collection("col-sala")
         .doc(colDocument)
-        .collection("col-mensajes")
+        .collection("col-mensajes2")
         .orderBy("fecha")
         .where("status", "==", "pendiente")
         .limit(25)
@@ -116,7 +116,7 @@ function aprobar(id) {
     return db
         .collection("col-sala")
         .doc(colDocument)
-        .collection("col-mensajes")
+        .collection("col-mensajes2")
         .doc(id)
         .update({
             status: "aprobado",
@@ -139,7 +139,7 @@ function denegar(id) {
     return db
         .collection("col-sala")
         .doc(colDocument)
-        .collection("col-mensajes")
+        .collection("col-mensajes2")
         .doc(id)
         .update({
             status: "denegado",
@@ -163,7 +163,7 @@ function eliminarMensaje(id) {
         if (result.isConfirmed) {
             db.collection("col-sala")
                 .doc(colDocument)
-                .collection("col-mensajes")
+                .collection("col-mensajes2")
                 .doc(id)
                 .delete()
                 .then(function() {})

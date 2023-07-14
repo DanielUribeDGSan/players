@@ -14,7 +14,7 @@ const smgM = document.getElementById("msg-movil");
 var seHizoScroll = false;
 var esMiMensaje = true;
 
-var colDocument = 'test';
+var colDocument = 'danone';
 
 Popper.createPopper(button, tooltip);
 Popper.createPopper(button2, tooltip);
@@ -24,35 +24,33 @@ function toggle() {
 
 }
 
+const screenWidth = window.screen.width;
+const classScroll = screenWidth <= 900 ? 'scrollable-area' : 'scrollable-area-lg';
 const scrollBottom = () => {
-    const scrollClass = document.getElementsByClassName('scrollable-area');
+    const scrollClass = document.getElementsByClassName(`${classScroll}`);
 
     for (var i = 0; i < scrollClass.length; i++) {
-        const element = document.getElementsByClassName('scrollable-area')[i];
+        const element = document.getElementsByClassName(`${classScroll}`)[i];
         element.scrollTop = element.scrollHeight;
     }
 }
 
-document.getElementsByClassName('scrollable-area')[0].addEventListener(
-    'scroll',
-    function() {
-        let scrollTop = document.getElementsByClassName('scrollable-area')[0].scrollTop;
-        const scrollHeight = document.getElementsByClassName('scrollable-area')[0].scrollHeight; // added
-        const offsetHeight = document.getElementsByClassName('scrollable-area')[0].offsetHeight;
-        // var clientHeight = document.getElementById('box').clientHeight;
-        const contentHeight = scrollHeight - offsetHeight; // added
 
+const validateScroll = () => {
+    let scrollTop = document.getElementsByClassName(`${classScroll}`)[0].scrollTop;
+    const scrollHeight = document.getElementsByClassName(`${classScroll}`)[0].scrollHeight; // added
+    const offsetHeight = document.getElementsByClassName(`${classScroll}`)[0].offsetHeight;
+    // var clientHeight = document.getElementById('box').clientHeight;
+    const contentHeight = scrollHeight - offsetHeight; // added
 
-        if (contentHeight > scrollTop + 93) // modified
-        {
-            seHizoScroll = true;
-        } else {
-            seHizoScroll = false;
-        }
+    if (contentHeight > scrollTop + 93) // modified
+    {
+        seHizoScroll = true;
+    } else {
+        seHizoScroll = false;
+    }
 
-    },
-    false
-)
+}
 
 document.querySelector('emoji-picker')
     .addEventListener('emoji-click', event => {
@@ -100,7 +98,7 @@ function renderMensajes() {
     ultimosChats.forEach((doc) => {
         var html = "";
 
-        if (doc.nombre === 'Olga Caridad') {
+        if (doc.email === 'nutritionforum2023host@gmail.com') {
             html = `<div class="chat-line__message" data-a-target="chat-line-message" data-test-selector="chat-line-message" tabindex="0">
                 <div class="tw-relative">
                     <div class="tw-relative">
@@ -108,11 +106,11 @@ function renderMensajes() {
                             <div class="chat-line__no-background tw-inline">
                                 <div class="tw-inline-block"><i class="fas fa-user-shield userChatAdmin" ></i>
                                     <span class="chat-line__username" role="button" tabindex="0"><span><span class="chat-author__display-name" data-a-target="chat-message-username userChatAdmin"
-                                              data-a-user="danieluribedg" data-test-selector="message-username"><strong>${doc.nombre}</strong></span></span>
+                                              data-a-user="danieluribedg" data-test-selector="message-username"><strong>${doc.nombre.replace(/%20/g, ' ')}</strong></span></span>
                                     </span>
                                 </div><span aria-hidden="true" data-test-selector="chat-message-separator">:
                                 </span><span class="text-fragment"
-                                  data-a-target="chat-message-text"><span class="msg userColorChatAdmin fondoChatAdmin">${doc.mensaje.replace("#ca9e67", "#ffffff")}</span></span>
+                                  data-a-target="chat-message-text"><span class="msg userColorChatAdmin fondoChatAdmin">${doc.mensaje}</span></span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +125,7 @@ function renderMensajes() {
                                   <div class="chat-line__no-background tw-inline">
                                       <div class="tw-inline-block"><i class="far fa-user mr-1 userChat"></i>
                                           <span class="chat-line__username" role="button" tabindex="0"><span><span class="chat-author__display-name userChat" data-a-target="chat-message-username"
-                                                    data-a-user="danieluribedg" data-test-selector="message-username">${doc.nombre}</span></span>
+                                                    data-a-user="danieluribedg" data-test-selector="message-username">${doc.nombre.replace(/%20/g, ' ')}</span></span>
                                           </span>
                                       </div><span aria-hidden="true" data-test-selector="chat-message-separator">:
                                       </span><span class="text-fragment"
@@ -145,6 +143,7 @@ function renderMensajes() {
         $('#list-message2').append(html);
     });
 
+    validateScroll();
 
     if (seHizoScroll) {
         notification.show('Hay nuevos mensajes', 'success')
@@ -160,7 +159,7 @@ function renderMensajes() {
 function mostrarChats() {
     db.collection('col-sala')
         .doc(colDocument)
-        .collection('col-mensajes').orderBy('id', 'asc').where("status", "==", "aprobado")
+        .collection('col-mensajes2').orderBy('id', 'asc').where("status", "==", "aprobado")
         .onSnapshot((querySnapshot) => {
             $('#list-message').html('');
             $('#list-message2').html('');
@@ -177,10 +176,10 @@ function mostrarChats() {
                 chastArr = chatTemp.slice(chatTemp.length - memoria);
             }
             renderMensajes();
-            const position = $(".scrollable-area").scrollTop();
+            const position = $(`.${classScroll}`).scrollTop();
             const posicionFinal = parseInt(position.toFixed(0)) + 281;
 
-            const top = $('.scrollable-area').get(0).scrollHeight;
+            const top = $(`.${classScroll}`).get(0).scrollHeight;
 
             if (scroll + 2400 < top || posicionFinal + 2400 < top) {
                 notification.show('Hay nuevos mensajes', 'success');
@@ -209,7 +208,10 @@ function urlify(text) {
 
 
 function registrarChats(name, email) {
-    var separa = name.split(" ", 2);
+    const nameStorage = name ? name : localStorage.getItem('nameDanone');
+    const emailStorage = email ? email : localStorage.getItem('emailDanone');
+
+    var separa = nameStorage.split(" ", 2);
     var nombreUsuarioSinEspacio = separa[0] + ' ' + separa[1];
     var nombreValidado = nombreUsuarioSinEspacio.replace("undefined", "");
 
@@ -251,8 +253,8 @@ function registrarChats(name, email) {
     let status = "aprobado";
 
     const message = {
-        nombre: name,
-        email: email,
+        nombre: nameStorage,
+        email: emailStorage,
         mensaje: chat,
         fecha: fecha,
         status: status,
@@ -264,17 +266,17 @@ function registrarChats(name, email) {
 
         db.collection('col-sala')
             .doc(colDocument)
-            .collection('col-mensajes').orderBy('id', 'desc').limit(1)
+            .collection('col-mensajes2').orderBy('id', 'desc').limit(1)
             .get().then(function(querySnapshot) {
                 querySnapshot.forEach((doc) => {
                     db.collection('col-sala')
                         .doc(colDocument)
-                        .collection('col-mensajes')
+                        .collection('col-mensajes2')
                         .add({
-                            nombre: name,
+                            nombre: nameStorage,
                             mensaje: chat,
                             fecha: fecha,
-                            email: email,
+                            email: emailStorage,
                             status: "aprobado",
                             id: doc.data().id + 1,
                             day: 1,
@@ -295,7 +297,7 @@ function registrarChats(name, email) {
                                 id: doc.data().id + 1,
                                 imagen: ""
                             });
-                            // scrollBottom();                                                        
+                            // scrollBottom();
                             esMiMensaje = true;
                             return null;
                         })
@@ -312,7 +314,10 @@ function registrarChats(name, email) {
 
 
 function registrarChatsM(name, email) {
-    var separa = name.split(" ", 2);
+    const nameStorage = name ? name : localStorage.getItem('nameDanone');
+    const emailStorage = email ? email : localStorage.getItem('emailDanone');
+
+    var separa = nameStorage.split(" ", 2);
     var nombreUsuarioSinEspacio = separa[0] + ' ' + separa[1];
     var nombreValidado = nombreUsuarioSinEspacio.replace("undefined", "");
 
@@ -354,15 +359,15 @@ function registrarChatsM(name, email) {
     }
 
     let status = "";
-    if (name == '12citvirtual') {
+    if (nameStorage == '12citvirtual') {
         status = "aprobado";
     } else {
         status = "pendiente";
     }
 
     const message = {
-        nombre: name,
-        email: email,
+        nombre: nameStorage,
+        email: emailStorage,
         mensaje: chat,
         fecha: fecha,
         status: status,
@@ -377,17 +382,17 @@ function registrarChatsM(name, email) {
 
         db.collection('col-sala')
             .doc(colDocument)
-            .collection('col-mensajes').orderBy('id', 'desc').limit(1)
+            .collection('col-mensajes2').orderBy('id', 'desc').limit(1)
             .get().then(function(querySnapshot) {
                 querySnapshot.forEach((doc) => {
                     db.collection('col-sala')
                         .doc(colDocument)
-                        .collection('col-mensajes')
+                        .collection('col-mensajes2')
                         .add({
-                            nombre: name,
+                            nombre: nameStorage,
                             mensaje: chat,
                             fecha: fecha,
-                            email: email,
+                            email: emailStorage,
                             status: "aprobado",
                             id: doc.data().id + 1,
                             day: 1,
@@ -423,8 +428,8 @@ function registrarChatsM(name, email) {
 
 }
 
-$(".scrollable-area").scroll(function(event) {
-    var scrollTop = $(".scrollable-area").scrollTop();
+$(`.${classScroll}`).scroll(function(event) {
+    var scrollTop = $(`.${classScroll}`).scrollTop();
     scroll = parseInt(scrollTop.toFixed(0)) + 281;
 });
 
@@ -441,8 +446,8 @@ var notification = new Notif({
 
 
 
-$(".scrollable-area").scroll(function(event) {
-    var scrollTop = $(".scrollable-area").scrollTop();
+$(`.${classScroll}`).scroll(function(event) {
+    var scrollTop = $(`.${classScroll}`).scrollTop();
     scroll = parseInt(scrollTop.toFixed(0)) + 281;
 });
 
@@ -508,8 +513,8 @@ function Notif(option) {
 
 
 const mostrarUltimoChat = () => {
-    $('.scrollable-area').animate({
-        scrollTop: $('.scrollable-area').get(0).scrollHeight
+    $(`.${classScroll}`).animate({
+        scrollTop: $(`.${classScroll}`).get(0).scrollHeight
     }, 1500);
     $(".toast-message").addClass("ocultar");
 
