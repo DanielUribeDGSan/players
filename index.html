@@ -51,12 +51,9 @@
     <script src="./js/jquery.min.js?ver=1.0.8"></script>
     <script>
       const getParamValue = (paramName) => {
-        let url = window.location.search.substring(1);
-        let qArray = url.split('&');
-        for (let i = 0; i < qArray.length; i++) {
-          let pArr = qArray[i].split('=');
-          if (pArr[0] == paramName) return pArr[1];
-        }
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(paramName);
+        console.log("paramName", urlParams.get(paramName));
       };
     </script>
   </head>
