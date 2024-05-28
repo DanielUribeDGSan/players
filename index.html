@@ -64,18 +64,8 @@
 
       const getParamValue = (paramName) => {
         const urlParams = new URLSearchParams(window.location.search);
-
-        if (paramName === 'user') {
-          const user = urlParams.get(paramName)
-            ? urlParams.get(paramName)
-            : localStorage.getItem('namePlayer');
-          return user;
-        } else {
-          const email = urlParams.get(paramName)
-            ? urlParams.get(paramName)
-            : localStorage.getItem('emailPlayer');
-          return email;
-        }
+        return urlParams.get(paramName);
+        console.log("paramName", urlParams.get(paramName));
       };
     </script>
   </head>
