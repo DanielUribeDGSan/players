@@ -32,11 +32,11 @@
     />
 
     <link href="./css/colors.css" rel="stylesheet" />
-    <link href="./css/en_vivo.css?ver=1.0.8" rel="stylesheet" />
-    <link href="./css/en_vivo2.css?ver=1.0.8" rel="stylesheet" />
-    <!-- <link href="./css/loading.css?ver=1.0.8" rel="stylesheet"> -->
+    <link href="./css/en_vivo.css?ver=1.0.12" rel="stylesheet" />
+    <link href="./css/en_vivo2.css?ver=1.0.12" rel="stylesheet" />
+    <!-- <link href="./css/loading.css?ver=1.0.12" rel="stylesheet"> -->
 
-    <!-- <link href="./css/validarMovil2.css?ver=1.0.8" rel="stylesheet">  -->
+    <!-- <link href="./css/validarMovil2.css?ver=1.0.12" rel="stylesheet">  -->
 
     <!-- Alertas -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -47,15 +47,34 @@
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-storage.js"></script>
-    <script src="./js/conexion.js?ver=1.0.8"></script>
-    <script src="./js/jquery.min.js?ver=1.0.8"></script>
+    <script src="./js/conexion.js?ver=1.0.12"></script>
+    <script src="./js/jquery.min.js?ver=1.0.12"></script>
     <script>
+      const setItem = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.get('user')) {
+          localStorage.setItem('namePlayer', urlParams.get('user'));
+        }
+        if (urlParams.get('email')) {
+          localStorage.setItem('emailPlayer', urlParams.get('email'));
+        }
+      };
+      setItem();
+
       const getParamValue = (paramName) => {
-        let url = window.location.search.substring(1);
-        let qArray = url.split('&');
-        for (let i = 0; i < qArray.length; i++) {
-          let pArr = qArray[i].split('=');
-          if (pArr[0] == paramName) return pArr[1];
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (paramName === 'user') {
+          const user = urlParams.get(paramName)
+            ? urlParams.get(paramName)
+            : localStorage.getItem('namePlayer');
+          return user;
+        } else {
+          const email = urlParams.get(paramName)
+            ? urlParams.get(paramName)
+            : localStorage.getItem('emailPlayer');
+          return email;
         }
       };
     </script>
@@ -282,7 +301,7 @@
                                 >
                                   <iframe
                                     class="iframe"
-                                    src="https://vimeo.com/event/1888841/embed"
+                                    src="https://vimeo.com/event/3564440/embed"
                                     frameborder="0"
                                     allow="autoplay; fullscreen; picture-in-picture"
                                     allowfullscreen
@@ -1327,15 +1346,15 @@
     <!-- Modales  --->
     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}" />
     <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
-    <script src="./js/bootstrap.bundle.min.js?ver=1.0.8"></script>
+    <script src="./js/bootstrap.bundle.min.js?ver=1.0.12"></script>
     <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
-    <!--<script type="text/javascript" src="js/validarRuta.js?ver=1.0.8"></script>-->
+    <!--<script type="text/javascript" src="js/validarRuta.js?ver=1.0.12"></script>-->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script
       type="module"
       src="https://unpkg.com/emoji-picker-element@1"
     ></script>
-    <script type="text/javascript" src="./js/chat.js?ver=1.0.8"></script>
-    <!-- <script type="text/javascript" src="./js/loading.js?ver=1.0.8"></script>  -->
+    <script type="text/javascript" src="./js/chat.js?ver=1.0.12"></script>
+    <!-- <script type="text/javascript" src="./js/loading.js?ver=1.0.12"></script>  -->
   </body>
 </html>

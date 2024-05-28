@@ -3,11 +3,12 @@
   --primary: #eaa630;
   --overlay: #000;
   --opacity: 0;
-  --fondoImage: url('../img/fondo-player.png');
+  /* --fondoImage: url('../img/fondo-player.png'); */
+  --fondoImage: none; 
   --fondoChat: none;
   --text-color: #000;
-  --fondo: #fff;
-  --fondo-chat: #5a5b99;
+  --fondo: #503191;
+  --fondo-chat: #503191;
   --grisNav: #a2a2a2;
   --blanco: #fff;
   --borderBoton: #fff;

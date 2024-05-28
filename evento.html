@@ -1,57 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Iframe</title>
 
     <style>
-        body {
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-        }
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
 
-        .container {
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-        }
+      .container {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
 
-        /* Then style the iframe to fit in the container div with full height and width */
-        .responsive-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+      /* Then style the iframe to fit in the container div with full height and width */
+      .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <iframe id="myIframe" class="responsive-iframe"></iframe>
+      <iframe id="myIframe" class="responsive-iframe"></iframe>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.js"
-        integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.slim.js"
+      integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk="
+      crossorigin="anonymous"
+    ></script>
     <script>
-        const showIframe = () => {
-            $('#myIframe').attr('src', "https://danieluribedgsan.github.io/players/index.html?user=daniel&email=daniel.uribe.garcia07@gmail.com");
-            // $('#myIframe').attr('src', "http://127.0.0.1:5500/index.html?user=daniel&email=daniel.uribe.garcia07@gmail.com");
-        }
+      const showIframe = () => {
+        $('#myIframe').attr(
+          'src',
+          'https://players-events.netlify.app/index.html?user=daniel&email=daniel.uribe.garcia07@gmail.com'
+        );
+        // $('#myIframe').attr('src', "http://127.0.0.1:5500/index.html?user=daniel&email=daniel.uribe.garcia07@gmail.com");
+      };
 
-        showIframe();
+      showIframe();
     </script>
-</body>
-
+  </body>
 </html>

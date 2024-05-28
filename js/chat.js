@@ -14,7 +14,7 @@ const smgM = document.getElementById("msg-movil");
 var seHizoScroll = false;
 var esMiMensaje = true;
 
-var colDocument = 'danone';
+var colDocument = 'merk';
 
 Popper.createPopper(button, tooltip);
 Popper.createPopper(button2, tooltip);
